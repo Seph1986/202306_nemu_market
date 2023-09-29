@@ -4,4 +4,6 @@
 ¡Gracias por elegir Ñemu Market! ¡Esperamos que disfrutes de la experiencia de compra y venta en nuestra plataforma!
 
 
-jajajaj, Hola nico
+jajajaj, re cool
+
+verdad que si bro jajaj
