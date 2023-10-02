@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} Inicio de sesión {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="card mt-5" style="padding: 20px;">
+            <h1>Inicio de sesión</h1>
+            <br>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleInputUsername" class="form-label">Usuario:</label>
+                    <input type="text" class="form-control" id="exampleInputUsername" name="username">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Contraseña:</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Inicio de sesión</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

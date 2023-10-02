@@ -1,6 +1,7 @@
 from apps.core.views import index
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import messages
 from django.urls import path
 
 urlpatterns = [
