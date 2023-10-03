@@ -47,7 +47,12 @@
                         </div>
                         <div class="mb-3">
                             {{ form.price.label_tag }}
-                            {{ form.price }} Gs.
+                            {{ form.price }}
+                            {% if form.price.errors %}
+                                <div class="text-danger">
+                                    {{ form.price.errors }}
+                                </div>
+                            {% endif %}
                         </div>
                         <div class="mb-3">
                             <label for="category_id" class="form-label">Categoria:</label>
