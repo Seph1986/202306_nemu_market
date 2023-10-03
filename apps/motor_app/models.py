@@ -23,7 +23,7 @@ class Motor(models.Model):
     price = models.CharField(max_length=255, null=False)
     images = models.FileField()
     category = models.ForeignKey(
-        Category, on_delete=models.SET_NULL, null=True)
+        MotorCategory, on_delete=models.SET_NULL, null=True)
     
 
 
