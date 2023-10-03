@@ -7,33 +7,25 @@
     <div class="row">
         <div class="card p-3">
             <h1>Ofertar Motorizado</h1>
-            <form action="#" method="post">
+            <form action="#" method="POST">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-6">
                         <div class="mb-3">
-                            <label for="brand" class="form-label">Marca:</label>
-                            <input type="text" class="form-control" id="brand" name="brand" minlength="3" required>
+                            {{ form.brand.label_tag }}
+                            {{ form.brand }}
                         </div>
                         <div class="mb-3">
-                            <label for="model" class="form-label">Modelo:</label>
-                            <input type="text" class="form-control" id="model" name="model" minlength="3" required>
+                            {{ form.model.label_tag }}
+                            {{ form.model }}
                         </div>
                         <div class="mb-3">
-                            <label for="fuel" class="form-label">Combustible:</label>
-                            <select class="form-select" id="fuel" name="fuel">
-                                <option selected>Seleccionar Combustible</option>
-                                <option value="gas">Nafta</option>
-                                <option value="diesel">Diesel</option>¿
-                            </select>
+                            {{ form.fuel.label_tag }}
+                            {{ form.fuel }}
                         </div>
                         <div class="mb-3">
-                            <label for="transmission" class="form-label">Transmisión:</label>
-                            <select class="form-select" id="transmission" name="transmission">
-                                <option selected>Seleccionar Transmisión</option>
-                                <option value="manual">Mecánica</option>
-                                <option value="automatic">Automática</option>¿
-                            </select>
+                            {{ form.transmission.label_tag }}
+                            {{ form.transmission }}
                         </div>
                         <div class="mb-3">
                             <label for="images" class="form-label">Imagenes:</label>
@@ -42,21 +34,20 @@
                     </div>
                     <div class="col-6">
                         <div class="mb-3">
-                            <label for="year" class="form-label">Año:</label>
-                            <input type="number" class="form-control" id="year" name="year" minlength="4" required>
+                            {{ form.year.label_tag }}
+                            {{ form.year }}
                         </div>
                         <div class="mb-3">
-                            <label for="color" class="form-label">Color:</label>
-                            <input type="text" class="form-control" id="color" name="color" minlength="3" required>
+                            {{ form.color.label_tag }}
+                            {{ form.color }}
                         </div>
                         <div class="mb-3">
-                            <label for="location" class="form-label">Ubicación:</label>
-                            <input type="text" class="form-control" id="location" name="location" minlength="4"
-                                required>
+                            {{ form.location.label_tag }}
+                            {{ form.location }}
                         </div>
                         <div class="mb-3">
-                            <label for="price" class="form-label">Precio:</label>
-                            <input type="num" class="form-control" id="price" name="price" minlength="4" required>
+                            {{ form.price.label_tag }}
+                            {{ form.price }} Gs.
                         </div>
                         <div class="mb-3">
                             <label for="category_id" class="form-label">Categoria:</label>
