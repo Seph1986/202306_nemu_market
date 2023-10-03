@@ -7,22 +7,21 @@ from .models import Entertainment, EntertainmentCategory
 
 # Create your views here.
 def entertainment_form(request):
-    
+
     if request.method == 'POST':
         form =  EntertainmentForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
             # category = EntertainmentCategory.objects.get(id=data['category_id'])
-            
+
             print(data, form)
 
-            # Entertainment.objects.create(
-            #     name = data['name'],
-            #     description = data['description'],
-            #     price = data['price'],
-            #     location = data['location'],
-            #     category = category
-            # )
+            Entertainment.objects.create(
+                name = data['name'],
+                description = data['description'],
+                price = data['price'],
+                location = data['location'],
+            )
 
         return redirect(reverse('entertainment_form'))
 
