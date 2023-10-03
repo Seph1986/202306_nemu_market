@@ -74,4 +74,7 @@ class MotorForm(forms.Form):
         label='Precio',
         min_value=1,
         required=True,
+        error_messages={
+            'invalid': 'Por favor, ingrese un número válido para el precio.',
+        }
     )

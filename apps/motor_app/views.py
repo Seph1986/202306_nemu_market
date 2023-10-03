@@ -1,3 +1,4 @@
+""" Vistas Motors. """
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
@@ -7,13 +8,14 @@ from .forms import MotorForm
 
 # Create your views here.
 def motor_add(request):
+    """ Vista para motorizados. """
     if request.method == 'POST':
         form = MotorForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data  # Obtiene los datos válidos del formulario
             # images = request.FILES.getlist('images')
             category = Category.objects.get(id=data['category_id'])
-            
+
             # Crea un objeto Motor utilizando los datos válidos
             new_motor = Motor.objects.create(
                 brand=data['brand'],
