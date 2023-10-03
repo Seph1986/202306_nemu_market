@@ -11,7 +11,7 @@ def motor_add(request):
         form = MotorForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data  # Obtiene los datos válidos del formulario
-            images = request.FILES.getlist('images')
+            # images = request.FILES.getlist('images')
             category = Category.objects.get(id=data['category_id'])
             
             # Crea un objeto Motor utilizando los datos válidos
@@ -24,7 +24,7 @@ def motor_add(request):
                 color=data['color'],
                 location=data['location'],
                 price=data['price'],
-                images=images,
+                # images=images,
                 category=category
             )
 
@@ -38,4 +38,4 @@ def motor_add(request):
         'form': form,
     }
 
-    return render(request, 'motor_app/form.html', context)
+    return render(request, 'motor_app/motor_form.html', context)

@@ -9,7 +9,7 @@ class EntertainmentCategory(models.Model):
     name = models.CharField(max_length=145, null=False)
 
     def __str__(self) -> str:
-        return f"Categoria de entretenimiento: {self.name}"
+        return f"Entr.: {self.name}"
 
 
 class Entertainment(BaseClass):
