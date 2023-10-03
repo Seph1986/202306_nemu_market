@@ -6,7 +6,7 @@
 <div class="container mt-5 col-6">
     <div class="row">
         <div class="card p-3">
-            <h1>Ofertar Mobiliario</h1>
+            <h1>Ofertar Entretenimiento</h1>
             <form action="#" method="POST">
                 {% csrf_token %}
                 <div class="row">
@@ -28,14 +28,10 @@
                             {{ form.price.label_tag }}
                             {{ form.price }}
                             {% if form.price.errors %}
-                            <div class="text-danger">
-                                {{ form.price.errors }}
-                            </div>
+                                <div class="text-danger">
+                                    {{ form.price.errors }}
+                                </div>
                             {% endif %}
-                        </div>
-                        <div class="mb-3">
-                            <label for="images" class="form-label">Imagenes:</label>
-                            <input type="file" multiple class="form-control" id="images" name="images" required>
                         </div>
                     </div>
                     <div class="col-6">

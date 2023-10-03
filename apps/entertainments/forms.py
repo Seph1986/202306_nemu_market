@@ -1,10 +1,6 @@
 from django import forms
 
-from datetime import date
-
-
 class EntertainmentForm(forms.Form):
-
     name = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         label='Nombre',
@@ -30,7 +26,7 @@ class EntertainmentForm(forms.Form):
     )
 
     price = forms.IntegerField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        widget=forms.TextInput(attrs={'class':'form-control'}),
         label='Precio',
         min_value=1,
         required=True,

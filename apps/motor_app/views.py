@@ -14,7 +14,7 @@ def motor_add(request):
         if form.is_valid():
             data = form.cleaned_data  # Obtiene los datos válidos del formulario
             # images = request.FILES.getlist('images')
-            MotorCategory = MotorCategory.objects.get(id=data['MotorCategory'])
+            # MotorCategory = MotorCategory.objects.get(id=data['MotorCategory'])
 
             # Crea un objeto Motor utilizando los datos válidos
             new_motor = Motor.objects.create(
@@ -27,7 +27,7 @@ def motor_add(request):
                 location=data['location'],
                 price=data['price'],
                 # images=images,
-                MotorCategory=MotorCategory
+                # MotorCategory=MotorCategory
             )
 
             return redirect(reverse('motor_add'))

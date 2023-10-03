@@ -1,12 +1,12 @@
 """ Vistas Entretenimiento. """
-from apps.entertainments.views import entertainment_form
+from apps.entertainments.views import entertainment_add
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import messages
 from django.urls import path
 
 urlpatterns = [
-    path('agregar/', entertainment_form, name='entertainment_form'),
+    path('agregar/', entertainment_add, name='entertainment_add'),
 ]
 
 if settings.DEBUG:
