@@ -14,12 +14,17 @@ def electronic_add(request):
             data = form.cleaned_data  # Obtiene los datos válidos del formulario
             images = request.FILES.getlist('images')
             print(data)
+            # images = request.FILES.getlist('images')
+            category_id = request.POST.get('category_id')
+            print("Categoría seleccionada:", category_id)
+
             # Crea un objeto Motor utilizando los datos válidos
             new_electronic = Electronic.objects.create(
                 title=data['title'],
                 description=data['description'],
                 location=data['location'],
                 price=data['price'],
+                category_id=category_id,
             )
 
             return redirect(reverse('inicio'))
