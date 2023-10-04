@@ -2,10 +2,12 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from .models import Electronic, ElectronicCategory
 from .forms import ElectronicForm
+from .models import Electronic, ElectronicCategory
 
 # Create your views here.
+
+
 def electronic_add(request):
     """ Vista para electrónicos. """
     if request.method == 'POST':
@@ -21,16 +23,20 @@ def electronic_add(request):
             # Crea un objeto Motor utilizando los datos válidos
             new_electronic = Electronic.objects.create(
                 title=data['title'],
-                description=data['description'],
-                location=data['location'],
-                price=data['price'],
                 category_id=category_id,
+                price=data['price'],
+                location=data['location'],
+                phone_number1=data['phone1'],
+                phone_number2=data['phone2'],
+                email=data['email'],
+                description=data['description'],
             )
 
             return redirect(reverse('inicio'))
-
     else:
+        print("Formulario no valido")
         form = ElectronicForm()
+        print(ElectronicForm.errors)
 
     context = {
         'categories': ElectronicCategory.objects.all(),

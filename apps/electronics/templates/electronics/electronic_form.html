@@ -7,7 +7,7 @@
     <div class="row">
         <div class="card p-3">
             <h1>Electrónica</h1>
-            <form action="#" method="POST">
+            <form action="{% url 'electronic_add' %}" method="post">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-6">
@@ -37,11 +37,23 @@
                             <label for="images" class="form-label">Imagenes:</label>
                             <input type="file" multiple  class="form-control" id="images" name="images" required>
                         </div> -->
-                    </div>
-                    <div class="col-6">
                         <div class="mb-3">
                             {{ form.location.label_tag }}
                             {{ form.location }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.phone1.label_tag }}
+                            {{ form.phone1 }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.phone2.label_tag }}
+                            {{ form.phone2 }}
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
                         </div>
                         <div class="mb-3">
                             {{ form.description.label_tag }}
