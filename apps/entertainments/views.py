@@ -12,7 +12,9 @@ def entertainment_add(request):
         form = EntertainmentForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            images = request.FILES.getlist('images')
+            # images = request.FILES.getlist('images')
+            category_id = request.POST.get('category_id')
+            print("Categoría seleccionada:", category_id)
 
 
             new_electronic = Entertainment.objects.create(
@@ -20,9 +22,10 @@ def entertainment_add(request):
                 description=data['description'],
                 location=data['location'],
                 price=data['price'],
+                category_id=category_id,
             )
 
-            return redirect(reverse('furniture_add'))
+            return redirect(reverse('entertainment_add'))
 
     else:
         form = EntertainmentForm()
