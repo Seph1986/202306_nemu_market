@@ -19,15 +19,18 @@ def motor_add(request):
 
             # Crea un objeto Motor utilizando los datos válidos
             new_motor = Motor.objects.create(
+                title=data['title'],
+                description=data['description'],
+                location=data['location'],
+                price=data['price'],
                 brand=data['brand'],
                 model=data['model'],
                 fuel=data['fuel'],
                 transmission=data['transmission'],
                 year=int(data['year']),
                 color=data['color'],
-                location=data['location'],
-                price=data['price'],
-                category_id=category_id,
+                # images=images,
+                # MotorCategory=MotorCategory
             )
 
             return redirect(reverse('motor_add'))

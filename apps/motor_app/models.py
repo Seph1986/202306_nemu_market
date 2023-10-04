@@ -1,4 +1,5 @@
 from django.db import models
+from apps.core.models import BaseClass
 
 # Create your models here.
 
@@ -11,19 +12,18 @@ class MotorCategory(models.Model):
         return f"{self.name}"
 
 
-class Motor(models.Model):
-
+class Motor(BaseClass):
+    
     brand = models.CharField(max_length=145, null=False)
     model = models.CharField(max_length=145, null=False)
     fuel = models.CharField(max_length=50, null=False)
     transmission = models.CharField(max_length=145, null=False)
     year = models.PositiveBigIntegerField(null=False)
     color = models.CharField(max_length=50, null=False)
-    location = models.CharField(max_length=255, null=False)
-    price = models.CharField(max_length=255, null=False)
     images = models.FileField()
     category = models.ForeignKey(
         MotorCategory, on_delete=models.SET_NULL, null=True)
+
     
 
 

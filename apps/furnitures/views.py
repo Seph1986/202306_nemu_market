@@ -18,7 +18,7 @@ def furniture_add(request):
 
 
             new_electronic = Furniture.objects.create(
-                name=data['name'],
+                title=data['title'],
                 description=data['description'],
                 location=data['location'],
                 price=data['price'],

@@ -18,7 +18,7 @@ def entertainment_add(request):
 
 
             new_electronic = Entertainment.objects.create(
-                name=data['name'],
+                title=data['title'],
                 description=data['description'],
                 location=data['location'],
                 price=data['price'],

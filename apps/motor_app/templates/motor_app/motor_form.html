@@ -2,15 +2,32 @@
 
 {% block title %} {% endblock %}
 
-{% block content %}
-<div class="container mt-5 col-6">
+{% block content %} 
+<div class="container mt-5 col-9">
     <div class="row">
         <div class="card p-3">
             <h1>Motorizado</h1>
             <form action="#" method="POST">
                 {% csrf_token %}
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
+                        <div class="mb-3">
+                            {{ form.title.label_tag }}
+                            {{ form.title }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.price.label_tag }}
+                            {{ form.price }}
+                            {% if form.price.errors %}
+                            <div class="text-danger">
+                                {{ form.price.errors }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.location.label_tag }}
+                            {{ form.location }}
+                        </div>
                         <div class="mb-3">
                             {{ form.brand.label_tag }}
                             {{ form.brand }}
@@ -23,6 +40,8 @@
                             {{ form.fuel.label_tag }}
                             {{ form.fuel }}
                         </div>
+                    </div>
+                    <div class="col-4">
                         <div class="mb-3">
                             {{ form.transmission.label_tag }}
                             {{ form.transmission }}
@@ -49,11 +68,13 @@
                             {{ form.price.label_tag }}
                             {{ form.price }}
                             {% if form.price.errors %}
-                                <div class="text-danger">
-                                    {{ form.price.errors }}
-                                </div>
+                            <div class="text-danger">
+                                {{ form.price.errors }}
+                            </div>
                             {% endif %}
-                        </div>
+                        </div>                        
+                    </div>
+                    <div class="col-4">
                         <div class="mb-3">
                             <label for="category_id" class="form-label">Categoria:</label>
                             <select class="form-select" id="category_id" name="category_id">
@@ -62,6 +83,10 @@
                                 <option value="{{category.id}}">{{category.name}}</option>
                                 {% endfor %}
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            {{ form.description.label_tag }}
+                            {{ form.description }}
                         </div>
                     </div>
                 </div>
