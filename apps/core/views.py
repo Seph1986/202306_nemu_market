@@ -8,4 +8,4 @@ def index(request):
     # Agregar un mensaje de éxito
     messages.success(request, "¡Bienvenido a mi sitio web!")
 
-    return render(request, 'base.html')
+    return render(request, 'landing/index.html')

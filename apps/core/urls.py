@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.urls import path
 
 urlpatterns = [
-    path('inicio/', index, name='inicio'),
+    path('', index, name='inicio'),
 ]
 
 if settings.DEBUG:
