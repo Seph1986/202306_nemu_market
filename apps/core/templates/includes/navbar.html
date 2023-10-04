@@ -7,6 +7,19 @@
     <form class="d-flex" role="search">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Buscar</button>
+      {% if user.is_authenticated %}
+      <div class="ms-1 dropdown">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Ofertar
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'electronic_add' %}">Electrónica</a></li>
+          <li><a class="dropdown-item" href="{% url 'entertainment_add' %}">Entretenimiento</a></li>
+          <li><a class="dropdown-item" href="{% url 'furniture_add' %}">Mobiliario</a></li>
+          <li><a class="dropdown-item" href="{% url 'motor_add' %}">Moto</a></li>
+        </ul>
+      </div>
+      {% endif %}
     </form>
 
     <!-- Enlaces de Registro e Inicio de Sesión a la derecha -->
