@@ -2,7 +2,7 @@
 
 {% block title %} {% endblock %}
 
-{% block content %} 
+{% block content %}
 <div class="container mt-5 col-9">
     <div class="row">
         <div class="card p-3">
@@ -46,12 +46,6 @@
                             {{ form.transmission.label_tag }}
                             {{ form.transmission }}
                         </div>
-                        <!-- <div class="mb-3">
-                            <label for="images" class="form-label">Imagenes:</label>
-                            <input type="file" multiple class="form-control" id="images" name="images" required>
-                        </div> -->
-                    </div>
-                    <div class="col-6">
                         <div class="mb-3">
                             {{ form.year.label_tag }}
                             {{ form.year }}
@@ -61,21 +55,6 @@
                             {{ form.color }}
                         </div>
                         <div class="mb-3">
-                            {{ form.location.label_tag }}
-                            {{ form.location }}
-                        </div>
-                        <div class="mb-3">
-                            {{ form.price.label_tag }}
-                            {{ form.price }}
-                            {% if form.price.errors %}
-                            <div class="text-danger">
-                                {{ form.price.errors }}
-                            </div>
-                            {% endif %}
-                        </div>                        
-                    </div>
-                    <div class="col-4">
-                        <div class="mb-3">
                             <label for="category_id" class="form-label">Categoria:</label>
                             <select class="form-select" id="category_id" name="category_id">
                                 <option selected>Seleccionar Categoria</option>
@@ -83,6 +62,24 @@
                                 <option value="{{category.id}}">{{category.name}}</option>
                                 {% endfor %}
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="images" class="form-label">Imagenes:</label>
+                            <input type="file" multiple class="form-control" id="images" name="images" >
+                        </div>
+                        <div class="mb-3">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="col-4   ">
+                        <div class="mb-3">
+                            {{ form.phone1.label_tag }}
+                            {{ form.phone1 }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.phone2.label_tag }}
+                            {{ form.phone2 }}
                         </div>
                         <div class="mb-3">
                             {{ form.description.label_tag }}
