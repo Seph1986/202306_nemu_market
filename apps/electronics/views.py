@@ -13,16 +13,16 @@ def electronic_add(request):
         if form.is_valid():
             data = form.cleaned_data  # Obtiene los datos válidos del formulario
             images = request.FILES.getlist('images')
-
+            print(data)
             # Crea un objeto Motor utilizando los datos válidos
             new_electronic = Electronic.objects.create(
-                name=data['name'],
+                title=data['title'],
                 description=data['description'],
                 location=data['location'],
                 price=data['price'],
             )
 
-            return redirect(reverse('electronic_add'))
+            return redirect(reverse('inicio'))
 
     else:
         form = ElectronicForm()
