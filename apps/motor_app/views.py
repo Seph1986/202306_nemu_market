@@ -30,7 +30,7 @@ def motor_add(request):
                 year=int(data['year']),
                 color=data['color'],
                 # images=images,
-                # MotorCategory=MotorCategory
+                category_id=category_id
             )
 
             return redirect(reverse('motor_add'))
