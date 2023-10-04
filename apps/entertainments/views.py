@@ -22,7 +22,7 @@ def entertainment_add(request):
                 price=data['price'],
             )
 
-            return redirect(reverse('furniture_add'))
+            return redirect(reverse('entertainment_add'))
 
     else:
         form = EntertainmentForm()
