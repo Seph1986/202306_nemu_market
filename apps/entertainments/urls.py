@@ -1,4 +1,4 @@
-""" Vistas Entretenimiento. """
+""" Entertainments routes. """
 from apps.entertainments.views import entertainment_add
 from django.conf import settings
 from django.conf.urls.static import static

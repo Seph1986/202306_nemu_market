@@ -1,3 +1,4 @@
+""" Views Users. """
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -9,6 +10,7 @@ from .forms import RegisterUserForm
 
 
 def login_user(request):
+    """ Vista para inicio de sesión. """ 
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']

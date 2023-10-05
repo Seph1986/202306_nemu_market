@@ -1,7 +1,8 @@
+""" Forms Electronics. """
 from django import forms
 
-
 class ElectronicForm(forms.Form):
+    """ Formulario para oferta de electrónicos. """
     title = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         label='Título',

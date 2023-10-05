@@ -1,9 +1,11 @@
-from django import forms
-
+""" Forms Motors. """
 from datetime import date
+
+from django import forms
 
 
 class MotorForm(forms.Form):
+    """ Formularios para oferta de mobliliarios. """
     FUEL_CHOICES = [
         ('gas','Nafta'),
         ('diesel', 'Diesel'),
