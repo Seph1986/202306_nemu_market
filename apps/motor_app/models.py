@@ -13,7 +13,7 @@ class MotorCategory(models.Model):
 
 
 class Motor(BaseClass):
-    
+
     brand = models.CharField(max_length=145, null=False)
     model = models.CharField(max_length=145, null=False)
     fuel = models.CharField(max_length=50, null=False)
@@ -23,10 +23,6 @@ class Motor(BaseClass):
     images = models.FileField()
     category = models.ForeignKey(
         MotorCategory, on_delete=models.SET_NULL, null=True)
-
-    
-
-
 
     def __str__(self) -> str:
         return f"{self.brand} {self.model} {self.year} {self.color} {self.transmission}"

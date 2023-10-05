@@ -33,14 +33,18 @@ def electronic_add(request):
             )
 
             return redirect(reverse('inicio'))
-    else:
-        print("Formulario no valido")
-        form = ElectronicForm()
-        print(ElectronicForm.errors)
 
-    context = {
-        'categories': ElectronicCategory.objects.all(),
-        'form': form,
-    }
+        else:
+            print("Formulario no valido")
+            print(form.errors)
+
+    else:
+
+        form = ElectronicForm()
+
+        context = {
+            'categories': ElectronicCategory.objects.all(),
+            'form': form,
+        }
 
     return render(request, 'electronics/electronic_form.html', context)

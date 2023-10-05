@@ -20,20 +20,27 @@ def motor_add(request):
             # Crea un objeto Motor utilizando los datos válidos
             new_motor = Motor.objects.create(
                 title=data['title'],
-                description=data['description'],
-                location=data['location'],
                 price=data['price'],
+                location=data['location'],
                 brand=data['brand'],
                 model=data['model'],
                 fuel=data['fuel'],
                 transmission=data['transmission'],
                 year=int(data['year']),
                 color=data['color'],
+                category_id=category_id,
+                email=data['email'],
+                phone_number1=data['phone1'],
+                phone_number2=data['phone2'],
+                description=data['description'],
                 # images=images,
-                category_id=category_id
             )
 
-            return redirect(reverse('motor_add'))
+            return redirect(reverse('inicio'))
+
+        else:
+            print("Formulario no valido")
+            print(form.errors)
 
     else:
         form = MotorForm()

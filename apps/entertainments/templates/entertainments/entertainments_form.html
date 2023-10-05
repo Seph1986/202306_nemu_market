@@ -6,14 +6,14 @@
 <div class="container mt-5 col-6">
     <div class="row">
         <div class="card p-3">
-          <h1>Entretenimiento</h1>
+            <h1>Entretenimiento</h1>
             <form action="#" method="POST">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-6">
                         <div class="mb-3">
-                            {{ form.name.label_tag }}
-                            {{ form.name }}
+                            {{ form.title.label_tag }}
+                            {{ form.title }}
                         </div>
                         <div class="mb-3">
                             <label for="category_id" class="form-label">Categoria:</label>
@@ -35,13 +35,25 @@
                         </div>
                         <!-- <div class="mb-3">
                             <label for="images" class="form-label">Imagenes:</label>
-                            <input type="file" multiple class="form-control" id="images" name="images" required>
+                            <input type="file" multiple  class="form-control" id="images" name="images" required>
                         </div> -->
-                    </div>
-                    <div class="col-6">
                         <div class="mb-3">
                             {{ form.location.label_tag }}
                             {{ form.location }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.phone1.label_tag }}
+                            {{ form.phone1 }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.phone2.label_tag }}
+                            {{ form.phone2 }}
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
                         </div>
                         <div class="mb-3">
                             {{ form.description.label_tag }}
