@@ -6,6 +6,8 @@ from .models import Furniture, FurnitureCategory
 from .forms import FurnitureForm
 
 # Create your views here.
+
+
 def furniture_add(request):
     """ Vista para electrónicos. """
     if request.method == 'POST':
@@ -16,16 +18,22 @@ def furniture_add(request):
             category_id = request.POST.get('category_id')
             print("Categoría seleccionada:", category_id)
 
-
-            new_electronic = Furniture.objects.create(
+            new_forniture = Furniture.objects.create(
                 title=data['title'],
-                description=data['description'],
-                location=data['location'],
-                price=data['price'],
                 category_id=category_id,
+                price=data['price'],
+                location=data['location'],
+                phone_number1=data['phone1'],
+                phone_number2=data['phone2'],
+                email=data['email'],
+                description=data['description'],
             )
 
-            return redirect(reverse('furniture_add'))
+            return redirect(reverse('inicio'))
+
+        else:
+            print("Formulario no valido")
+            print(form.errors)
 
     else:
         form = FurnitureForm()
