@@ -21,4 +21,8 @@ class FurnitureCategory(models.Model):
 class Furniture(BaseClass):
     """ Modelo para mobiliarios. """
     category = models.ForeignKey(
-        FurnitureCategory, on_delete=models.SET_NULL, null=True)
+        FurnitureCategory,
+        related_name='furnitures',
+        on_delete=models.SET_NULL,
+        null=True
+        )
