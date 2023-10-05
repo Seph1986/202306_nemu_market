@@ -1,4 +1,4 @@
-""" Vistas Electronics"""
+""" Views Electronics"""
 from django.shortcuts import redirect, render
 from django.urls import reverse
 

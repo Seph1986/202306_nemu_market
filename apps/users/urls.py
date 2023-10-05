@@ -1,4 +1,4 @@
-""" Vistas Users. """
+""" Views Users. """
 from apps.users.views import login_user, logout_user, register_user
 from django.conf import settings
 from django.conf.urls.static import static

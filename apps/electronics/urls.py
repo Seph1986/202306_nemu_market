@@ -1,3 +1,4 @@
+""" Electronics routes. """
 from apps.electronics.views import electronic_add
 from django.conf import settings
 from django.conf.urls.static import static

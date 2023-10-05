@@ -1,3 +1,4 @@
+""" Furnitures models. """
 from django.db import models
 from apps.core.models import BaseClass
 
@@ -5,14 +6,19 @@ from apps.core.models import BaseClass
 
 
 class FurnitureCategory(models.Model):
-
+    """ Modelo de categorias para mobiliarios. """
     name = models.CharField(max_length=145, null=False)
+
+    class Meta:
+        """ Verbos plurares y singurales. """
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
 
     def __str__(self) -> str:
         return f"Categoria de muebles: {self.name}"
 
 
 class Furniture(BaseClass):
-
+    """ Modelo para mobiliarios. """
     category = models.ForeignKey(
         FurnitureCategory, on_delete=models.SET_NULL, null=True)

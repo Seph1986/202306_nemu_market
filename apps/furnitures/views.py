@@ -1,4 +1,4 @@
-""" Vistas Furniture. """
+""" Views Furniture. """
 from django.shortcuts import redirect, render
 from django.urls import reverse
 

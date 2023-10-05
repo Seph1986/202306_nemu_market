@@ -1,8 +1,8 @@
+""" Forms Furnitures. """
 from django import forms
 
-
-
 class FurnitureForm(forms.Form):
+    """ Formularios para oferta de mobliliarios. """
     title = forms.CharField(
         widget=forms.TextInput(attrs={'class':'form-control'}),
         label='Título',

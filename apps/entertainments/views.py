@@ -1,3 +1,4 @@
+""" Views Entertainments. """
 from django.shortcuts import redirect, render
 from django.urls import reverse
 

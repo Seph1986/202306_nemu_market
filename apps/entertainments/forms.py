@@ -1,6 +1,8 @@
+""" Forms Entertainments. """
 from django import forms
 
 class EntertainmentForm(forms.Form):
+    """ Formularios para oferta de entretenimientos. """
     name = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         label='Título',
@@ -34,7 +36,7 @@ class EntertainmentForm(forms.Form):
             'invalid': 'Por favor, ingrese un número válido para el precio.',
         }
     )
-    
+
     phone1 = forms.IntegerField(
         widget=forms.TextInput(attrs={'class':'form-control'}),
         label='Celular 1',
@@ -43,7 +45,7 @@ class EntertainmentForm(forms.Form):
         error_messages={
             'invalid': 'Por favor, ingrese un número de contacto válido',
         }
-        
+
     )
 
     phone2 = forms.IntegerField(
@@ -51,7 +53,7 @@ class EntertainmentForm(forms.Form):
             label='Celular 2',
             min_value=1,
         )
-    
+
     email = forms.IntegerField(
         widget=forms.TextInput(attrs={'class':'form-control'}),
         label='Email',
@@ -59,5 +61,5 @@ class EntertainmentForm(forms.Form):
         error_messages={
             'invalid': 'Por favor, ingrese un email válido.',
         }
-        
+
     )
