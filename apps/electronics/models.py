@@ -21,4 +21,8 @@ class ElectronicCategory(models.Model):
 class Electronic(BaseClass):
     """ Modelo para electrónicos. """
     category = models.ForeignKey(
-        ElectronicCategory, on_delete=models.SET_NULL, null=True)
+        ElectronicCategory,
+        related_name='Electronics',
+        on_delete=models.SET_NULL,
+        null=True
+        )

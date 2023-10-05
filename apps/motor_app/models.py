@@ -28,7 +28,11 @@ class Motor(BaseClass):
     color = models.CharField(max_length=50, null=False)
     images = models.FileField()
     category = models.ForeignKey(
-        MotorCategory, on_delete=models.SET_NULL, null=True)
+        MotorCategory,
+        related_name='motors',
+        on_delete=models.SET_NULL,
+        null=True
+        )
 
     
 

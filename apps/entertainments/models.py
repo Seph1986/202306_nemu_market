@@ -21,4 +21,8 @@ class EntertainmentCategory(models.Model):
 class Entertainment(BaseClass):
     """ Modelo para entretenimientos. """
     category = models.ForeignKey(
-        EntertainmentCategory, on_delete=models.SET_NULL, null=True)
+        EntertainmentCategory,
+        related_name='Entertainments',
+        on_delete=models.SET_NULL,
+        null=True
+        )
