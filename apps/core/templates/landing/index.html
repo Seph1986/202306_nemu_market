@@ -1,3 +1,76 @@
 {% extends 'base.html' %}
 
 {% block title %} Ñemu Market {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row p-2 justify-content-center">
+        <div class="col-4 card m-1 shadow-sm p-2 bg-light">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Electrónica
+                    <i class="bi bi-tv"></i>
+                    <ul class="mt-2">
+                        {% for category in electronics %}
+                        <li><a class="fw-normal fs-6" href="#">{{category.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </h5>
+            </div>
+        </div>
+        <div class="col-4 card m-1 shadow-sm p-2 bg-light">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Entretenimiento
+                    <i class="bi bi-balloon"></i>
+                    <ul class="mt-2">
+                        {% for category in entertainments %}
+                        <li><a class="fw-normal fs-6" href="#">{{category.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="row p-2 justify-content-center">
+        <div class="col-4 card m-1 shadow-sm p-2 bg-light">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Mobiliario
+                    <i class="bi bi-house"></i>
+                    <ul class="mt-2">
+                        {% for category in furnitures %}
+                        <li><a class="fw-normal fs-6" href="#">{{category.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </h5>
+            </div>
+        </div>
+        <div class="col-4 card m-1 shadow-sm p-2 bg-light">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Motor
+                    <i class="bi bi-car-front-fill"></i>
+                    <ul class="mt-2">
+                        {% for category in motors %}
+                        <li><a class="fw-normal fs-6" href="#">{{category.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </h5>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row mt-4 justify-content-center">
+        <div class="col-10">
+            <div class="col-12">
+                <h3>Ñemu Market</h3>
+                <p>¡Bienvenido a Ñemu Market! Somos una plataforma de reventa en línea que te permite comprar y vender
+                    artículos de segunda mano de manera fácil y segura.</p>
+            </div>       
+        </div>
+    </div>
+</div>
+
+{% endblock %}
