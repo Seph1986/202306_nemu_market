@@ -56,6 +56,11 @@ def motor_add(request):
 
 def motor_app_list(request, id):
 
-    print(id)
-    
-    return render(request, 'motor_app/list.html')
+    category_instane = MotorCategory.objects.get(id=id)
+    motor_filter = Motor.objects.filter(category=category_instane)
+
+    context = {
+        'electronics': motor_filter
+    }
+
+    return render(request, 'motor_app/list.html', context)

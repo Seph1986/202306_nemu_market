@@ -3,6 +3,29 @@
 {% block title %} Lista Electrónicos {% endblock %}
 
 {% block content %}
-
+{% if electronics %}
+{% for electronic in electronics %}
+    <div class="row m-2 justify-content-center">
+        <div class="col-10 card shadow-sm">
+            <div class="card-body">
+                <div class="card-title">
+                    {{electronic.title}}
+                    <h5>{{electronic.price}}</h5>
+                    <footer>
+                        Ofrecido por <span>{{electronic.user}}</span> 
+                        | Ubicación {{electronic.location}}
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% else %}
+<div class="row">
+    <div class="col card shadow-sm text-center">
+        <h5 class="m-2">Ofertas no encontradas</h5>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
 

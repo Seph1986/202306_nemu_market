@@ -14,9 +14,11 @@ def index(request):
 
     context = {
         'electronics': ElectronicCategory.objects.all(),
-        'entertainments': ElectronicCategory.objects.all(),
+        'entertainments': EntertainmentCategory.objects.all(),
         'furnitures': FurnitureCategory.objects.all(),
         'motors': MotorCategory.objects.all()
     }
 
     return render(request, 'landing/index.html', context)
+
+

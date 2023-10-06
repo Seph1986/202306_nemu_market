@@ -49,6 +49,11 @@ def furniture_add(request):
 
 def furnitures_list(request, id):
 
-    print(id)
-    
-    return render(request, 'furnitures/list.html')
+    category_instane = FurnitureCategory.objects.get(id=id)
+    furniture_filter = Furniture.objects.filter(category=category_instane)
+
+    context = {
+        'electronics': furniture_filter
+    }
+
+    return render(request, 'furnitures/list.html', context)

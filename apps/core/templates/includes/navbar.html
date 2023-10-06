@@ -25,7 +25,9 @@
     <!-- Enlaces de Registro e Inicio de Sesión a la derecha -->
     <div class="navbar-nav ml-auto">
       {% if user.is_authenticated %}
-      <a href="#" class="btn btn-outline-success btn-inline">Mis Ofertas</a>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="#">Mi Cuenta</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" aria-current="page" href="{% url 'logout' %}">Cerrar sesión</a>
       </li>
