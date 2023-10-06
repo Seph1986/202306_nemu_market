@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %} Publicar {% endblock %}
+{% block title %} Ofertar {% endblock %}
 
 {% block content %}
 <div class="container mt-5 col-6">
     <div class="row">
         <div class="card p-3">
             <h1>Electrónica</h1>
-            <form action="{% url 'electronic_add' %}" method="post">
+            <form action="{% url 'electronics:electronic_add' %}" method="post">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-6">

@@ -32,11 +32,7 @@ class Motor(BaseClass):
         related_name='motors',
         on_delete=models.SET_NULL,
         null=True
-        )
-
-    
-
-
+    )
 
     def __str__(self) -> str:
         return f"{self.brand} {self.model} {self.year} {self.color} {self.transmission}"

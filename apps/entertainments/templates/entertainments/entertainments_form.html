@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %} {% endblock %}
+{% block title %} Ofertar {% endblock %}
 
 {% block content %}
 <div class="container mt-5 col-6">
     <div class="row">
         <div class="card p-3">
             <h1>Entretenimiento</h1>
-            <form action="{% url 'entertainment_add' %}" method="POST">
+            <form action="{% url 'entertainments:entertainment_add' %}" method="POST">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-6">

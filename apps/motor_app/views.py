@@ -51,3 +51,10 @@ def motor_add(request):
     }
 
     return render(request, 'motor_app/motor_form.html', context)
+
+
+def motor_app_list(request, id):
+
+    print(id)
+    
+    return render(request, 'motor_app/list.html')

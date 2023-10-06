@@ -13,10 +13,10 @@
           Ofertar
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="{% url 'electronic_add' %}">Electrónica</a></li>
-          <li><a class="dropdown-item" href="{% url 'entertainment_add' %}">Entretenimiento</a></li>
-          <li><a class="dropdown-item" href="{% url 'furniture_add' %}">Mobiliario</a></li>
-          <li><a class="dropdown-item" href="{% url 'motor_add' %}">Motor</a></li>
+          <li><a class="dropdown-item" href="{% url 'electronics:electronic_add' %}">Electrónica</a></li>
+          <li><a class="dropdown-item" href="{% url 'entertainments:entertainment_add' %}">Entretenimiento</a></li>
+          <li><a class="dropdown-item" href="{% url 'furnitures:furniture_add' %}">Mobiliario</a></li>
+          <li><a class="dropdown-item" href="{% url 'motor_app:motor_add' %}">Motor</a></li>
         </ul>
       </div>
       {% endif %}

@@ -43,3 +43,10 @@ def entertainment_add(request):
     }
 
     return render(request, 'entertainments/entertainments_form.html', context)
+
+
+def entertainments_list(request, id):
+
+    print(id)
+    
+    return render(request, 'entertainments/list.html')
