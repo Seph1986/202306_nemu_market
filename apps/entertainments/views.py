@@ -48,6 +48,11 @@ def entertainment_add(request):
 
 def entertainments_list(request, id):
 
-    print(id)
-    
-    return render(request, 'entertainments/list.html')
+    category_instane = EntertainmentCategory.objects.get(id=id)
+    entertainment_filter = Entertainment.objects.filter(category=category_instane)
+
+    context = {
+        'electronics': entertainment_filter
+    }
+
+    return render(request, 'entertainments/list.html', context)
