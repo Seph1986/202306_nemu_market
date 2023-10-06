@@ -15,7 +15,7 @@ class ElectronicCategory(models.Model):
         verbose_name_plural = "Categories"
 
     def __str__(self) -> str:
-        return f"Categoria de electrónica: {self.name}"
+        return f"{self.name}"
 
 
 class Electronic(BaseClass):

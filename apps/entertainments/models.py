@@ -15,7 +15,7 @@ class EntertainmentCategory(models.Model):
         verbose_name_plural = "Categories"
 
     def __str__(self) -> str:
-        return f"Entr.: {self.name}"
+        return f"{self.name}"
 
 
 class Entertainment(BaseClass):
