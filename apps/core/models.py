@@ -12,6 +12,6 @@ class BaseClass(models.Model):
     # images
     phone_number1 = models.CharField(max_length=100)
     phone_number2 = models.CharField(max_length=100, null=True)
-    email = models.EmailField(null=True)
+    email = models.EmailField(null=True) 
     created_at = models.DateTimeField(auto_now_add=True, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)

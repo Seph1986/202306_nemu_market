@@ -59,6 +59,11 @@ def electronic_add(request):
 
 def electronics_list(request, id):
 
-    print(id)
+    category_instane = ElectronicCategory.objects.get(id=id)
+    electronic_filter = Electronic.objects.filter(category=category_instane)
 
-    return render(request, 'electronics/list.html')
+    context = {
+        'electronics': electronic_filter
+    }
+
+    return render(request, 'electronics/list.html', context)
