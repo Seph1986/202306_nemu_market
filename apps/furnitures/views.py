@@ -44,3 +44,10 @@ def furniture_add(request):
     }
 
     return render(request, 'furnitures/furniture_form.html', context)
+
+
+def furnitures_list(request, id):
+
+    print(id)
+    
+    return render(request, 'furnitures/list.html')

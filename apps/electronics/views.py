@@ -1,6 +1,8 @@
 """ Views Electronics"""
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.contrib import messages
+
 
 from .forms import ElectronicForm
 from .models import Electronic, ElectronicCategory
@@ -32,6 +34,10 @@ def electronic_add(request):
                 description=data['description'],
             )
 
+            messages.success(
+                request, '¡Producto de Electrónica agregado!'
+            )
+
             return redirect(reverse('inicio'))
 
         else:
@@ -48,3 +54,10 @@ def electronic_add(request):
         }
 
     return render(request, 'electronics/electronic_form.html', context)
+
+
+def electronics_list(request, id):
+
+    print(id)
+
+    return render(request, 'electronics/list.html')
