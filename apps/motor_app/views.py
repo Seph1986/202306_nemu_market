@@ -12,7 +12,7 @@ def motor_add(request):
     if request.method == 'POST':
         form = MotorForm(request.POST)
         if form.is_valid():
-            data = form.cleaned_data  # Obtiene los datos válidos del formulario
+            data = form.cleaned_data
             # images = request.FILES.getlist('images')
             category_id = request.POST.get('category_id')
             print("Categoría seleccionada:", category_id)
@@ -33,6 +33,7 @@ def motor_add(request):
                 phone_number1=data['phone1'],
                 phone_number2=data['phone2'],
                 description=data['description'],
+                user=request.user,
                 # images=images,
             )
 

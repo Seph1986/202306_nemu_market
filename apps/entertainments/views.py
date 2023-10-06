@@ -26,6 +26,7 @@ def entertainment_add(request):
                 phone_number2=data['phone2'],
                 email=data['email'],
                 description=data['description'],
+                user=request.user,
             )
 
             return redirect(reverse('inicio'))

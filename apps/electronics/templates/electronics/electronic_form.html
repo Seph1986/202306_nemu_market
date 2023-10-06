@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %} Ofertar {% endblock %}
+{% block title %} {% endblock %}
 
 {% block content %}
 <div class="container mt-5 col-6">
     <div class="row">
         <div class="card p-3">
             <h1>Electrónica</h1>
-            <form action="{% url 'electronics:electronic_add' %}" method="post">
+            <form action="#" method="POST">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-6">
@@ -37,23 +37,23 @@
                             <label for="images" class="form-label">Imagenes:</label>
                             <input type="file" multiple  class="form-control" id="images" name="images" required>
                         </div> -->
+                    </div>
+                    <div class="col-6">
                         <div class="mb-3">
                             {{ form.location.label_tag }}
                             {{ form.location }}
                         </div>
                         <div class="mb-3">
+                            {{ form.description.label_tag }}
+                            {{ form.description }}
+                        </div>
+                        <div class="mb-3">
                             {{ form.phone1.label_tag }}
-                            {{ form.phone1 }}
+                            {{ form.description }}
                         </div>
                         <div class="mb-3">
-                            {{ form.phone2.label_tag }}
-                            {{ form.phone2 }}
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="mb-3">
-                            {{ form.email.label_tag }}
-                            {{ form.email }}
+                            {{ form.description.label_tag }}
+                            {{ form.description }}
                         </div>
                         <div class="mb-3">
                             {{ form.description.label_tag }}

@@ -15,7 +15,7 @@ class FurnitureCategory(models.Model):
         verbose_name_plural = "Categories"
 
     def __str__(self) -> str:
-        return f"Categoria de muebles: {self.name}"
+        return f"{self.name}"
 
 
 class Furniture(BaseClass):
