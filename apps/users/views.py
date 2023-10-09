@@ -1,10 +1,12 @@
 """ Views Users. """
+from django.contrib.auth.models import User
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterUserForm
+from .models import Profile
 
 
 def login_user(request):
@@ -49,3 +51,12 @@ def register_user(request):
     return render(request, 'authenticate/register_user.html', {
         'form': form,
     })
+
+
+def user_profile(request, pk):
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user_id=pk)
+        return render(request, "authenticate/user_profile.html", {"profile": profile})
+    else:
+        messages.error(request, ("Debes iniciar sesión para ver esta página."))
+        return redirect ('inicio')

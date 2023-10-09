@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} Mi Cuenta {% endblock %}
+
+
+{% block content %}
+{% if profile %}
+<div class="container">
+    <div class="row">
+        <div class="card mt-5" style="padding: 20px;">
+            <h1>Mi Cuenta</h1>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <img src="{{ profile.profile_img.url }}" alt="Imagen de perfil de {{ profile.user.username }}">
+                    <h3>{{ profile.user.username}}</h3>
+                </div>
+                <!-- Col para mis publicaciones -->
+                <div class="col"></div>
+                <!-- Col para deseados -->
+                <div class="col"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
