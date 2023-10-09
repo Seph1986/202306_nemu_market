@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %} Ofertar Mobiliario {% endblock %}
+{% block title %} Editar Oferta Entretenimiento {% endblock %}
 
 {% block content %}
 <div class="container mt-5 col-6">
     <div class="row">
         <div class="card p-3">
-            <h1>Mobiliario</h1>
-            <form action="{% url 'furnitures:furniture_add' %}" method="POST">
+            <h1>Editar Entretenimiento</h1>
+            <form action="{% url 'entertainments:entertainment_add' %}" method="POST">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-6">
@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Ofertar</button>
+                <button type="submit" class="btn btn-primary">Editar Oferta</button>
             </form>
         </div>
     </div>

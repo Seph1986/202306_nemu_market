@@ -1,7 +1,69 @@
 {% extends 'base.html' %}
 
-{% block title %}Edit Electronics {% endblock %}
+{% block title %} Editar Oferta Electrónica {% endblock %}
 
 {% block content %}
-
+<div class="container mt-5 col-6">
+    <div class="row">
+        <div class="card p-3">
+            <h1>Editar Electrónica</h1>
+            <form action="#" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            {{ form.title.label_tag }}
+                            {{ form.title }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="category_id" class="form-label">Categoria:</label>
+                            <select class="form-select" id="category_id" name="category_id">
+                                <option selected>Seleccionar Categoria</option>
+                                {% for category in categories %}
+                                <option value="{{category.id}}">{{category.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            {{ form.price.label_tag }}
+                            {{ form.price }}
+                            {% if form.price.errors %}
+                                <div class="text-danger">
+                                    {{ form.price.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <!-- <div class="mb-3">
+                            <label for="images" class="form-label">Imagenes:</label>
+                            <input type="file" multiple  class="form-control" id="images" name="images" required>
+                        </div> -->
+                        <div class="mb-3">
+                            {{ form.location.label_tag }}
+                            {{ form.location }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            {{ form.phone1.label_tag }}
+                            {{ form.phone1 }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.phone2.label_tag }}
+                            {{ form.phone2 }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.description.label_tag }}
+                            {{ form.description }}
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Editar Oferta</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
