@@ -9,9 +9,7 @@ from apps.motor_app.models import MotorCategory
 
 # Create your views here.
 def index(request):
-    # Agregar un mensaje de éxito
-    messages.success(request, "¡Disfruta del sitio web!")
-
+    
     context = {
         'electronics': ElectronicCategory.objects.all(),
         'entertainments': EntertainmentCategory.objects.all(),

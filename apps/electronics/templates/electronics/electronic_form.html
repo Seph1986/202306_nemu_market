@@ -7,7 +7,7 @@
     <div class="row">
         <div class="card p-3">
             <h1>Electrónica</h1>
-            <form action="#" method="POST">
+            <form action="{% url 'electronics:electronic_add' %}" method="POST">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-6">

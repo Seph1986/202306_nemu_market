@@ -1,6 +1,8 @@
 """ Views Furniture. """
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.contrib import messages
+
 
 from .models import Furniture, FurnitureCategory
 from .forms import FurnitureForm
@@ -30,6 +32,10 @@ def furniture_add(request):
                 user=request.user,
             )
 
+            messages.success(
+                request, 'Oferta de Mobiliario agregado!'
+            )
+
             return redirect(reverse('inicio'))
 
         else:
@@ -53,7 +59,21 @@ def furnitures_list(request, id):
     furniture_filter = Furniture.objects.filter(category=category_instane)
 
     context = {
-        'electronics': furniture_filter
+        'furnitures': furniture_filter
     }
 
     return render(request, 'furnitures/list.html', context)
+
+
+def delete_furniture(request, id):
+
+    print(f'Mobiliario con id: "{id}" eliminado')
+
+    to_delete = Furniture.objects.get(id=id)
+    to_delete.delete()
+
+    messages.warning(
+                request, 'Oferta de Mobiliario eliminado!'
+            )
+
+    return redirect(reverse('inicio'))

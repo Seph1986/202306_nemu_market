@@ -1,24 +1,63 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
-{% block title %} Lista Electrónicos {% endblock %}
+{% block title %} Lista Mobiliarios {% endblock %}
 
 {% block content %}
-{% if electronics %}
-{% for electronic in electronics %}
-    <div class="row m-2 justify-content-center">
-        <div class="col-10 card shadow-sm">
-            <div class="card-body">
-                <div class="card-title">
-                    {{electronic.title}}
-                    <h5>{{electronic.price}}</h5>
+{% if furnitures %}
+{% for furniture in furnitures %}
+<div class="row m-2 justify-content-center">
+    <div class="col-10 card shadow-sm">
+        <div class="card-body">
+            <div class="row g-0">
+                <div class="card-title col-11">
+                    {{furniture.title}}
+                    <h5>{{furniture.price|intcomma}}</h5>
                     <footer>
-                        Ofrecido por <span>{{electronic.user}}</span> 
-                        | Ubicación {{electronic.location}}
+                        Ofrecido por <span>{{furniture.user}}</span>
+                        | Ubicación {{furniture.location}}
                     </footer>
+                </div>
+                <div class="col-1">
+                    {% if user == furniture.user %}
+                    <button class="btn btn-warning">
+                        <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger mt-1" data-bs-toggle="modal"
+                        data-bs-target="#delete{{furniture.id}}">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="delete{{furniture.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">ELIMINAR OFERTA</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Seguro que quieres elimar la oferta: {{furniture.title}}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <a href="{% url 'furnitures:delete_furniture' id=furniture.id %}"
+                                        class="btn btn-danger">Eliminar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
+
     </div>
+</div>
 {% endfor %}
 {% else %}
 <div class="row">
@@ -28,4 +67,3 @@
 </div>
 {% endif %}
 {% endblock %}
-

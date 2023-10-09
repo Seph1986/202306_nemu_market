@@ -1,6 +1,8 @@
 """ Views Motors. """
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.contrib import messages
+
 
 from .models import MotorCategory, Motor
 from .forms import MotorForm
@@ -37,6 +39,10 @@ def motor_add(request):
                 # images=images,
             )
 
+            messages.success(
+                request, 'Oferta de Motor agregado!'
+            )
+
             return redirect(reverse('inicio'))
 
         else:
@@ -60,7 +66,21 @@ def motor_app_list(request, id):
     motor_filter = Motor.objects.filter(category=category_instane)
 
     context = {
-        'electronics': motor_filter
+        'motors': motor_filter
     }
 
     return render(request, 'motor_app/list.html', context)
+
+
+def delete_motor_app(request, id):
+
+    print(f'Motor con id: "{id}" eliminado')
+
+    to_delete = Motor.objects.get(id=id)
+    to_delete.delete()
+
+    messages.warning(
+                request, 'Oferta de Motor eliminado!'
+            )
+
+    return redirect(reverse('inicio'))

@@ -36,7 +36,7 @@ def electronic_add(request):
             )
 
             messages.success(
-                request, '¡Producto de Electrónica agregado!'
+                request, 'Oferta de Electrónica agregado!'
             )
 
             return redirect(reverse('inicio'))
@@ -67,3 +67,28 @@ def electronics_list(request, id):
     }
 
     return render(request, 'electronics/list.html', context)
+
+
+def edit_electronic(request, id):
+
+    #Agregar funcionalidad para eliminar
+
+    context = {
+        'electronic': Electronic.objects.get(id=id)
+    }
+
+    return render(request, 'electronics/edit.html', context)
+
+
+def delete_electronic(request, id):
+
+    print(f'Electrónico con id: "{id}" eliminado')
+
+    to_delete = Electronic.objects.get(id=id)
+    to_delete.delete()
+
+    messages.warning(
+                request, 'Oferta de Electrónica eliminado!'
+            )
+
+    return redirect(reverse('inicio'))
