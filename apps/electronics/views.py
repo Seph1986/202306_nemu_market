@@ -36,7 +36,7 @@ def electronic_add(request):
             )
 
             messages.success(
-                request, '¡Producto de Electrónica agregado!'
+                request, 'Oferta de Electrónica agregado!'
             )
 
             return redirect(reverse('inicio'))
@@ -67,3 +67,80 @@ def electronics_list(request, id):
     }
 
     return render(request, 'electronics/list.html', context)
+
+
+def edit_electronic(request, id):
+
+    if request.user.is_authenticated:
+
+        my_electronic = Electronic.objects.get(id=id)
+
+        if request.method == 'POST':
+            form = ElectronicForm(request.POST)
+            if form.is_valid():
+                data = form.cleaned_data
+
+                category_id = request.POST.get('category_id')
+                category = ElectronicCategory.objects.get(id=category_id)
+
+                my_electronic.title = data['title']
+                my_electronic.price = data['price']
+                my_electronic.location = data['location']
+                my_electronic.phone_number1 = data['phone1']
+                my_electronic.phone_number2 = data['phone2']
+                my_electronic.email = data['email']
+                my_electronic.description = data['description']
+                my_electronic.category = category
+
+                my_electronic.save()
+
+                messages.success(request, 'Oferta de Electrónica editada')
+                return redirect(reverse('inicio'))
+
+            else:
+
+                print("Formulario no valido")
+                print(form.errors)
+                return redirect(reverse('inicio'))
+
+        else:
+
+            data = {
+                'title': my_electronic.title,
+                'price': my_electronic.price,
+                'location': my_electronic.location,
+                'phone1': my_electronic.phone_number1,
+                'phone2': my_electronic. phone_number2,
+                'email': my_electronic.email,
+                'description': my_electronic.description,
+            }
+
+            form = ElectronicForm(initial=data)
+
+            return render(request, 'electronics/edit.html',
+                          {'form': form,
+                           'my_electronic': my_electronic,
+                           'categories': ElectronicCategory.objects.all()}
+                          )
+
+    else:
+        messages.error(request, '¡Usuario no autenticado!')
+        return redirect(reverse('inicio'))
+
+
+def delete_electronic(request, id):
+
+    if request.user.is_authenticated:
+
+        print(f'Electrónico con id: "{id}" eliminado')
+
+        to_delete = Electronic.objects.get(id=id)
+        to_delete.delete()
+
+        messages.warning(request, 'Oferta de Electrónica eliminado!') 
+
+    else:
+        print('WARNING')
+        messages.error(request, 'Usuario no autentinca')
+
+    return redirect(reverse('inicio'))

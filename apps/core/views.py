@@ -10,6 +10,7 @@ from apps.motor_app.models import MotorCategory
 # Create your views here.
 def index(request):
     """Vista para inicio"""
+
     context = {
         'electronics': ElectronicCategory.objects.all(),
         'entertainments': EntertainmentCategory.objects.all(),

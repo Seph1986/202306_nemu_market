@@ -1,24 +1,63 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
-{% block title %} Lista Electrónicos {% endblock %}
+{% block title %} Lista Entretenimientos {% endblock %}
 
 {% block content %}
-{% if electronics %}
-{% for electronic in electronics %}
-    <div class="row m-2 justify-content-center">
-        <div class="col-10 card shadow-sm">
-            <div class="card-body">
-                <div class="card-title">
-                    {{electronic.title}}
-                    <h5>{{electronic.price}}</h5>
+{% if entertainments %}
+{% for entertainment in entertainments %}
+<div class="row m-2 justify-content-center">
+    <div class="col-10 card shadow-sm">
+        <div class="card-body">
+            <div class="row g-0">
+                <div class="card-title col-11">
+                    {{entertainment.title}}
+                    <h5>{{entertainment.price|intcomma}}</h5>
                     <footer>
-                        Ofrecido por <span>{{electronic.user}}</span> 
-                        | Ubicación {{electronic.location}}
+                        Ofrecido por <span>{{electronic.user}}</span>
+                        | Ubicación {{entertainment.location}}
                     </footer>
+                </div>
+                <div class="col-1">
+                    {% if user == entertainment.user %}
+                    <a href="{% url 'entertainments:edit_entertainment' id=entertainment.id %}" class="btn btn-warning mt-1">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger mt-1" data-bs-toggle="modal"
+                        data-bs-target="#delete{{entertainment.id}}">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="delete{{entertainment.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">ELIMINAR OFERTA</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Seguro que quieres elimar la oferta: {{entertainment.title}}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <a href="{% url 'entertainments:delete_entertainment' id=entertainment.id %}"
+                                        class="btn btn-danger">Eliminar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
+
     </div>
+</div>
 {% endfor %}
 {% else %}
 <div class="row">
@@ -28,4 +67,3 @@
 </div>
 {% endif %}
 {% endblock %}
-

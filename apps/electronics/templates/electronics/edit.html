@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %} Ofertar Mobiliario {% endblock %}
+{% block title %} Editar Oferta Electrónica {% endblock %}
 
 {% block content %}
 <div class="container mt-5 col-6">
     <div class="row">
         <div class="card p-3">
-            <h1>Mobiliario</h1>
-            <form action="{% url 'furnitures:furniture_add' %}" method="POST">
+            <h1>Editar Electrónica</h1>
+            <form action="#" method="POST">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-6">
@@ -28,9 +28,9 @@
                             {{ form.price.label_tag }}
                             {{ form.price }}
                             {% if form.price.errors %}
-                            <div class="text-danger">
-                                {{ form.price.errors }}
-                            </div>
+                                <div class="text-danger">
+                                    {{ form.price.errors }}
+                                </div>
                             {% endif %}
                         </div>
                         <!-- <div class="mb-3">
@@ -42,6 +42,12 @@
                             {{ form.location }}
                         </div>
                         <div class="mb-3">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
                             {{ form.phone1.label_tag }}
                             {{ form.phone1 }}
                         </div>
@@ -49,19 +55,13 @@
                             {{ form.phone2.label_tag }}
                             {{ form.phone2 }}
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="mb-3">
-                            {{ form.email.label_tag }}
-                            {{ form.email }}
-                        </div>
                         <div class="mb-3">
                             {{ form.description.label_tag }}
                             {{ form.description }}
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Ofertar</button>
+                <button type="submit" class="btn btn-primary">Editar Oferta</button>
             </form>
         </div>
     </div>

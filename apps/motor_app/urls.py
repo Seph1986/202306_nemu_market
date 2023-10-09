@@ -1,8 +1,7 @@
 """ Motors routes. """
-from apps.motor_app.views import motor_add, motor_app_list
+from apps.motor_app.views import motor_add, motor_app_list, edit_motor_app, delete_motor_app
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib import messages
 from django.urls import path
 
 app_name = 'motor_app'
@@ -10,7 +9,8 @@ app_name = 'motor_app'
 urlpatterns = [
     path('agregar/', motor_add, name='motor_add'),
     path('lista/<int:id>/', motor_app_list, name='motor_app_list'),
-
+    path('editar/<int:id>/', edit_motor_app, name='edit_motor_app'),
+    path('eliminar/<int:id>/', delete_motor_app, name='delete_motor_app'),
 ]
 
 if settings.DEBUG:
