@@ -45,3 +45,5 @@ class LoginForm(AuthenticationForm):
         """ Metadatos para formulario de ingreso. """
         model = User
         fields = ['username', 'password']
+
+

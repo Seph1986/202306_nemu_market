@@ -9,9 +9,7 @@ from apps.motor_app.models import MotorCategory
 
 # Create your views here.
 def index(request):
-    # Agregar un mensaje de éxito
-    messages.success(request, "¡Disfruta del sitio web!")
-
+    """Vista para inicio"""
     context = {
         'electronics': ElectronicCategory.objects.all(),
         'entertainments': EntertainmentCategory.objects.all(),
@@ -20,5 +18,3 @@ def index(request):
     }
 
     return render(request, 'landing/index.html', context)
-
-
