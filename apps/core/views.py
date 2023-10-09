@@ -17,6 +17,11 @@ def index(request):
         'motors': MotorCategory.objects.all()
     }
 
-    return render(request, 'landing/index.html', context)
+    return render(request, 'nemu/index.html', context)
 
 
+def search_results(request):
+
+    print(request.POST['search'])
+
+    return render(request, 'nemu/search_results.html')
