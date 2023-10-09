@@ -20,9 +20,9 @@
                 </div>
                 <div class="col-1">
                     {% if user == motor.user %}
-                    <button class="btn btn-warning">
+                    <a href="{% url 'motor_app:edit_motor_app' id=motor.id %}" class="btn btn-warning mt-1">
                         <i class="bi bi-pencil-fill"></i>
-                    </button>
+                    </a>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-danger mt-1" data-bs-toggle="modal"
                         data-bs-target="#delete{{motor.id}}">
