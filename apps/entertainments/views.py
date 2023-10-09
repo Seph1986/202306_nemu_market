@@ -1,6 +1,8 @@
 """ Views Entertainments. """
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.contrib import messages
+
 
 from .forms import EntertainmentForm
 from .models import Entertainment, EntertainmentCategory
@@ -29,6 +31,10 @@ def entertainment_add(request):
                 user=request.user,
             )
 
+            messages.success(
+                request, 'Oferta de Entretenimiento agregado!'
+            )
+
             return redirect(reverse('inicio'))
 
         else:
@@ -52,7 +58,21 @@ def entertainments_list(request, id):
     entertainment_filter = Entertainment.objects.filter(category=category_instane)
 
     context = {
-        'electronics': entertainment_filter
+        'entertainments': entertainment_filter
     }
 
     return render(request, 'entertainments/list.html', context)
+
+
+def delete_entertainment(request, id):
+
+    print(f'Entretenimiento con id: "{id}" eliminado')
+
+    to_delete = Entertainment.objects.get(id=id)
+    to_delete.delete()
+
+    messages.warning(
+                request, 'Oferta de Entretenimiento eliminado!'
+            )
+
+    return redirect(reverse('inicio'))
