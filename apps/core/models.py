@@ -1,5 +1,5 @@
 from django.db import models
-from apps.users.models import Profile
+from apps import users
 
 # Create your models here.
 
@@ -14,6 +14,6 @@ class BaseClass(models.Model):
     phone_number1 = models.CharField(max_length=100)
     phone_number2 = models.CharField(max_length=100, null=True)
     email = models.EmailField(null=True)
-    liked_by = models.ManyToManyField(Profile, related_name='offers')
+    liked_by = models.ManyToManyField(to='users.Profile', related_name='offers')
     created_at = models.DateTimeField(auto_now_add=True, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)
