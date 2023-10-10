@@ -11,7 +11,8 @@ from apps.motor_app.models import MotorCategory
 
 # Create your views here.
 def index(request):
-    
+    """Vista para inicio"""
+
     context = {
         'electronics': ElectronicCategory.objects.all(),
         'entertainments': EntertainmentCategory.objects.all(),
@@ -44,3 +45,4 @@ def search_results(request):
         #FALTA AGREGAR PROTECCIÓN CONTRA REVERSE
 
         return render(request, 'nemu/search_results.html')
+
