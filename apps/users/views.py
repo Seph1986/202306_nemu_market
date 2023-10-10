@@ -12,7 +12,7 @@ from .models import Profile
 
 
 def login_user(request):
-    """ Vista para inicio de sesión. """ 
+    """ Vista para inicio de sesión. """
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -22,7 +22,8 @@ def login_user(request):
             messages.success(request, "Inicio de sesión exitoso.")
             return redirect('inicio')
         else:
-            messages.error(request, "Hubo un error al iniciar sesión, inténtalo de nuevo.")
+            messages.error(
+                request, "Hubo un error al iniciar sesión, inténtalo de nuevo.")
             return redirect('login')
     else:
         return render(request, 'authenticate/login.html', {})
