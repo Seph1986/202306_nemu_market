@@ -114,10 +114,10 @@ def edit_furniture(request, id):
             form = FurnitureForm(initial=data)
 
             return render(request, 'furnitures/edit.html',
-                          {'form': form,
-                           'my_furniture': my_furniture,
-                           'categories': FurnitureCategory.objects.all()}
-                          )
+                        {'form': form,
+                        'my_furniture': my_furniture,
+                        'categories': FurnitureCategory.objects.all()}
+                        )
 
     else:
         messages.error(request, '¡Usuario no autenticado!')

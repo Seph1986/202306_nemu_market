@@ -12,13 +12,53 @@
             <br>
             <div class="row">
                 <div class="col">
-                    <img src="{{ profile.profile_img.url }}" alt="Imagen de perfil de {{ profile.user.username }}">
-                    <h3>{{ profile.user.username}}</h3>
+                    <h2>Perfil de {{ profile.user.username }}</h2>
+
+                    <img src="{{ profile.profile_img.url }}" alt="{{ profile.user.username }}">
+                    <br>
+                    <p>{{ user.first_name }} {{ user.last_name }}</p>
+                    <p>{{ user.email }}</p>
+                    <p>Se unió el {{ user.date_joined }}</p>
+                    <br>
+                    {% if user == profile.user %}
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#changeProfilePictureModal">Cambiar foto de perfil</button>
+                    {% endif %}
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="changeProfilePictureModal" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Cambiar foto de perfil</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Agregar el formulario para cambiar la imagen de perfil aquí -->
+                                    <form method="post" action="" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Col para mis publicaciones -->
-                <div class="col"></div>
+                <div class="col">
+                    <h2>Mis Publicaciones</h2>
+                </div>
                 <!-- Col para deseados -->
-                <div class="col"></div>
+                <div class="col">
+                    <h2>Mis Deseados</h2>
+                </div>
             </div>
         </div>
     </div>

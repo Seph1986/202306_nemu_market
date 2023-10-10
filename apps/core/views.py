@@ -24,7 +24,7 @@ def index(request):
 
 
 def search_results(request):
-    
+    """Vista para resultados del search. """
     if request.method == 'POST':
 
         searched = request.POST['search']
@@ -35,12 +35,11 @@ def search_results(request):
             'found': found
         }
 
-        return render(request, 'nemu/search_results.html', context) 
+        return render(request, 'nemu/search_results.html', context)
 
 
-    else: 
-        
+    else:
+
         #FALTA AGREGAR PROTECCIÓN REENVIO DE FORMULARIO
 
         return render(request, 'nemu/search_results.html')
-

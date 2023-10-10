@@ -4,6 +4,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.contrib.auth.models import User
 
+from .models import Profile
+
 class RegisterUserForm(UserCreationForm):
     """ Formulario de registro para usuario."""
     email = forms.EmailField(
@@ -37,8 +39,6 @@ class RegisterUserForm(UserCreationForm):
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password2'].widget.attrs['class'] = 'form-control'
 
-
-
 class LoginForm(AuthenticationForm):
     """ Formulario de ingreso par usuario. """
     class Meta:
@@ -47,3 +47,7 @@ class LoginForm(AuthenticationForm):
         fields = ['username', 'password']
 
 
+class ChangeProfilePictureForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['profile_img']

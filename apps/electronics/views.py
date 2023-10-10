@@ -36,7 +36,7 @@ def electronic_add(request):
             )
 
             messages.success(
-                request, 'Oferta de Electrónica agregado!'
+                request, '¡Producto de Electrónica agregado!'
             )
 
             return redirect(reverse('inicio'))
