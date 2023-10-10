@@ -10,7 +10,7 @@
     <div class="col-10 card shadow-sm">
         <div class="card-body">
             <div class="row g-0">
-                <div class="card-title col-11">
+                <div class="card-title col-10">
                     {{entertainment.title}}
                     <h5>{{entertainment.price|intcomma}}</h5>
                     <footer>
@@ -18,13 +18,13 @@
                         | Ubicación {{entertainment.location}}
                     </footer>
                 </div>
-                <div class="col-1">
+                <div class="col-2 d-flex justify-content-end align-items-center">
                     {% if user == entertainment.user %}
-                    <a href="{% url 'entertainments:edit_entertainment' id=entertainment.id %}" class="btn btn-warning mt-1">
+                    <a href="{% url 'entertainments:edit_entertainment' id=entertainment.id %}" class="btn btn-warning me-1 btn-sm">
                         <i class="bi bi-pencil-fill"></i>
                     </a>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger mt-1" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-danger btn-sm me-1" data-bs-toggle="modal"
                         data-bs-target="#delete{{entertainment.id}}">
                         <i class="bi bi-trash-fill"></i>
                     </button>
@@ -52,6 +52,9 @@
                         </div>
                     </div>
                     {% endif %}
+                    <a href="" class="btn btn-success btn-sm">
+                        <i class="bi bi-star-fill"></i>
+                    </a>
                 </div>
             </div>
         </div>

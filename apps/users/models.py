@@ -1,11 +1,13 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
+from apps.core.models import BaseClass
 # Create your models here.
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_img = models.ImageField(null=True, upload_to="images/profile_imgs", default="images/user_default_icon.png")
+    
 
     def __str__(self):
         return self.user.username

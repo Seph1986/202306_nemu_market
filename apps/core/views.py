@@ -28,8 +28,6 @@ def search_results(request):
     if request.method == 'POST':
 
         searched = request.POST['search']
-        print(searched)
-
         found = BaseClass.objects.filter(title__contains= searched)
 
         context = {
@@ -42,7 +40,7 @@ def search_results(request):
 
     else: 
         
-        #FALTA AGREGAR PROTECCIÓN CONTRA REVERSE
+        #FALTA AGREGAR PROTECCIÓN REENVIO DE FORMULARIO
 
         return render(request, 'nemu/search_results.html')
 
