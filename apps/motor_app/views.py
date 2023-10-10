@@ -60,7 +60,7 @@ def motor_app_list(request, id):
     motor_filter = Motor.objects.filter(category=category_instane)
 
     context = {
-        'electronics': motor_filter
+        'motors': motor_filter
     }
 
     return render(request, 'motor_app/list.html', context)

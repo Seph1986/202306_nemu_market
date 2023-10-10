@@ -3,11 +3,11 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
-from .forms import RegisterUserForm
+from django.contrib.auth.decorators import login_required
+from .forms import RegisterUserForm, ChangeProfilePictureForm
 from .models import Profile
-
 
 
 
@@ -27,7 +27,7 @@ def login_user(request):
     else:
         return render(request, 'authenticate/login.html', {})
 
-
+@login_required
 def logout_user(request):
     """ Vista para cierre de sesión. """
     logout(request)
@@ -40,7 +40,11 @@ def register_user(request):
     if request.method == "POST":
         form = RegisterUserForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            profile, created = Profile.objects.get_or_create(user=user)
+            if created or not profile.profile_img:
+                profile.profile_img = 'images/user_default_icon.png'
+                profile.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
@@ -53,11 +57,34 @@ def register_user(request):
         'form': form,
     })
 
-
+@login_required
 def user_profile(request, pk):
     if request.user.is_authenticated:
-        profile = Profile.objects.get(user_id=pk)
-        return render(request, "authenticate/user_profile.html", {"profile": profile})
+        profile = get_object_or_404(Profile, user_id=pk)
+        is_owner = request.user == profile.user
+
+        if request.method == 'POST' and is_owner:
+            form = ChangeProfilePictureForm(request.POST, request.FILES, instance=profile)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'La foto de perfil se ha actualizado correctamente.')
+
+        form = ChangeProfilePictureForm(instance=profile) if is_owner else None
+
+        return render(request, "authenticate/user_profile.html", {"profile": profile, "form": form, "is_owner": is_owner})
     else:
         messages.error(request, ("Debes iniciar sesión para ver esta página."))
-        return redirect ('inicio')
+        return redirect('inicio')
+
+
+@login_required
+def change_profile_picture(request):
+    if request.method == 'POST':
+        form = ChangeProfilePictureForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'La foto de perfil se ha actualizado correctamente.')
+            return redirect('user_profile', pk=request.user.pk)
+    else:
+        form = ChangeProfilePictureForm(instance=request.user.profile)
+    return render(request, 'authenticate/user_profile.html', {'form': form})

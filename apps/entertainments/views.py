@@ -52,7 +52,7 @@ def entertainments_list(request, id):
     entertainment_filter = Entertainment.objects.filter(category=category_instane)
 
     context = {
-        'electronics': entertainment_filter
+        'entertainments': entertainment_filter
     }
 
     return render(request, 'entertainments/list.html', context)

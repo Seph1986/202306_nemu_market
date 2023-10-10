@@ -1,24 +1,25 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
-{% block title %} Lista Electrónicos {% endblock %}
+{% block title %} Lista Mobiliarios {% endblock %}
 
 {% block content %}
-{% if electronics %}
-{% for electronic in electronics %}
-    <div class="row m-2 justify-content-center">
-        <div class="col-10 card shadow-sm">
-            <div class="card-body">
-                <div class="card-title">
-                    {{electronic.title}}
-                    <h5>{{electronic.price}} Gs.</h5>
-                    <footer>
-                        Ofrecido por <span>{{electronic.user}}</span> 
-                        | Ubicación {{electronic.location}}
-                    </footer>
-                </div>
+{% if furnitures %}
+{% for furniture in furnitures %}
+<div class="row m-2 justify-content-center">
+    <div class="col-10 card shadow-sm">
+        <div class="card-body">
+            <div class="card-title">
+                {{furniture.title}}
+                <h5>Gs. {{furniture.price|intcomma}}</h5>
+                <footer>
+                    Ofrecido por <span>{{furniture.user}}</span>
+                    | Ubicación {{furniture.location}}
+                </footer>
             </div>
         </div>
     </div>
+</div>
 {% endfor %}
 {% else %}
 <div class="row">
@@ -28,4 +29,3 @@
 </div>
 {% endif %}
 {% endblock %}
-

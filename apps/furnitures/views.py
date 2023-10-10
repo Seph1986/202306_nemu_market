@@ -53,7 +53,7 @@ def furnitures_list(request, id):
     furniture_filter = Furniture.objects.filter(category=category_instane)
 
     context = {
-        'electronics': furniture_filter
+        'furnitures': furniture_filter
     }
 
     return render(request, 'furnitures/list.html', context)

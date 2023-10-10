@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block title %} Lista Electrónicos {% endblock %}
 
 {% block content %}
-{% if electronics %}
-{% for electronic in electronics %}
+{% if motors %}
+{% for motor in motors %}
     <div class="row m-2 justify-content-center">
         <div class="col-10 card shadow-sm">
             <div class="card-body">
                 <div class="card-title">
-                    {{electronic.title}}
-                    <h5>{{electronic.price}}</h5>
+                    {{motor.title}}
+                    <h5>Gs. {{motor.price|intcomma}}</h5>
                     <footer>
-                        Ofrecido por <span>{{electronic.user}}</span> 
-                        | Ubicación {{electronic.location}}
+                        Ofrecido por <span>{{motor.user}}</span> 
+                        | Ubicación {{motor.location}}
                     </footer>
                 </div>
             </div>

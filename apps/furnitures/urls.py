@@ -1,4 +1,4 @@
-""" Entertainments routes. """
+""" Furnitures routes. """
 from apps.furnitures.views import furniture_add, furnitures_list
 from django.conf import settings
 from django.conf.urls.static import static
