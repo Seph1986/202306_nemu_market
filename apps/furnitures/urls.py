@@ -1,5 +1,5 @@
 """ Entertainments routes. """
-from apps.furnitures.views import furniture_add, furnitures_list
+from apps.furnitures.views import furniture_add, furnitures_list, edit_furniture, delete_furniture
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
