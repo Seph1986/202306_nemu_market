@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %} Ñemu Market {% endblock %}
+
+{% block content %}
+
+{% if searched %}
+<h3 class="mt-4">Buscaste: {{searched}}</h3>
+{% else %}
+<h3 class="mt-4">Olvidaste de ingresar una busqueda :(</h3>
+{% endif %}
+
+{% if found %}
+{% for offer in found %}
+<div class="row mt-4 justify-content-center">
+    <div class="col-10 card shadow-sm">
+        <div class="card-body">
+            <div class="row g-0">
+                <div class="card-title col-11">
+                    {{offer.title}}
+                    <h5>{{offer.price|intcomma}}</h5>
+                    <footer>
+                        Ofrecido por <span>{{offer.user}}</span>
+                        | Ubicación {{offer.location}}
+                    </footer>
+                </div>
+                <div class="col-1">
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="row mt-5 justify-content-center">
+    <div class="col-10 card shadow-sm text-center">
+        <h5 class="mt-2">No se encontraron coincidencias ...</h5>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
