@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from apps.core.models import BaseClass
 from apps.electronics.models import ElectronicCategory
 from apps.entertainments.models import EntertainmentCategory
 from apps.furnitures.models import FurnitureCategory
@@ -21,7 +23,24 @@ def index(request):
 
 
 def search_results(request):
+    
+    if request.method == 'POST':
 
-    print(request.POST['search'])
+        searched = request.POST['search']
+        print(searched)
 
-    return render(request, 'nemu/search_results.html')
+        found = BaseClass.objects.filter(title__contains= searched)
+
+        context = {
+            'searched': searched,
+            'found': found
+        }
+
+        return render(request, 'nemu/search_results.html', context) 
+
+
+    else: 
+        
+        #FALTA AGREGAR PROTECCIÓN CONTRA REVERSE
+
+        return render(request, 'nemu/search_results.html')
