@@ -1,7 +1,11 @@
+{% load static %}
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
   <div class="container">
     <!-- Nombre de la página en el centro -->
-    <a class="navbar-brand" href="{% url 'inicio' %}">Ñemu Market</a>
+    <a class="navbar-brand" href="{% url 'inicio' %}">
+      <img style="height: 5rem;" src="{% static 'images/ñemu_market.png' %}" sizes="40x40" alt="Ñemu Logo"> Ñemu Market
+    </a>
 
     <!-- Buscador en el medio -->
     <form action="{% url 'search_results' %}" method="post" class="d-flex" role="search">
