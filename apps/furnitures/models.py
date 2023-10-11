@@ -1,6 +1,5 @@
 """ Furnitures models. """
 from django.db import models
-from django.contrib.auth.models import User
 from apps.core.models import BaseClass
 
 # Create your models here.
@@ -21,7 +20,6 @@ class FurnitureCategory(models.Model):
 
 class Furniture(BaseClass):
     """ Modelo para mobiliarios. """
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(
         FurnitureCategory,
         related_name='furnitures',

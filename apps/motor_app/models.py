@@ -1,6 +1,5 @@
 """ Motors models. """
 from django.db import models
-from django.contrib.auth.models import User
 from apps.core.models import BaseClass
 
 # Create your models here.
@@ -21,7 +20,6 @@ class MotorCategory(models.Model):
 
 class Motor(BaseClass):
     """ Modelo para motorizados. """
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     brand = models.CharField(max_length=145, null=False)
     model = models.CharField(max_length=145, null=False)
     fuel = models.CharField(max_length=50, null=False)
