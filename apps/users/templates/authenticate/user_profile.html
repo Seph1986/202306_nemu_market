@@ -65,7 +65,9 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ publication.title }}</h5>
+                                    <a href="{% url 'core:show_detail' id=publication.id %}">
+                                        <h5 class="card-title">{{ publication.title }}</h5>
+                                    </a>
                                     <p class="card-text">Gs. {{ publication.price|intcomma }}</p>
                                     <p class="card-text"><small class="text-muted"> {{publication.created_at}} </small>
                                     </p>
@@ -79,7 +81,7 @@
                 </div>
                 <!-- Col para deseados -->
                 <div class="col">
-                    <h2>Mis Deseados</h2>
+                    <h2>Mis Favoritos</h2>
                     {% for favorite in profile.favorites.all %}
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
@@ -88,7 +90,9 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ favorite.title }}</h5>
+                                    <a href="{% url 'core:show_detail' id=favorite.id %}">
+                                        <h5 class="card-title">{{ favorite.title }}</h5>
+                                    </a>
                                     <p class="card-text">Gs. {{ favorite.price|intcomma }}</p>
                                     <p class="card-text"><small class="text-muted"> {{favorite.created_at}} </small></p>
                                 </div>

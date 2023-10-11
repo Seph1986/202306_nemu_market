@@ -5,6 +5,8 @@ from django.conf.urls.static import static
 from django.contrib import messages
 from django.urls import path
 
+app_name = 'users'
+
 urlpatterns = [
     path('login_user', login_user, name='login'),
     path('logout_user', logout_user, name='logout'),

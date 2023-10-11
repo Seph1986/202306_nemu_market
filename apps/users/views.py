@@ -23,11 +23,11 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request, "Inicio de sesión exitoso.")
-            return redirect('inicio')
+            return redirect('core:inicio')
         else:
             messages.error(
                 request, "Hubo un error al iniciar sesión, inténtalo de nuevo.")
-            return redirect('login')
+            return redirect('users:login')
     else:
         return render(request, 'authenticate/login.html', {})
 
@@ -37,7 +37,7 @@ def logout_user(request):
     """ Vista para cierre de sesión. """
     logout(request)
     messages.success(request, ("El cierre de sesión se realizó exitosamente."))
-    return redirect('inicio')
+    return redirect('core:inicio')
 
 
 def register_user(request):
@@ -55,7 +55,7 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, ("El registro se realizó exitosamente."))
-            return redirect('inicio')
+            return redirect('core:inicio')
     else:
         form = RegisterUserForm()
     return render(request, 'authenticate/register_user.html', {
@@ -98,7 +98,7 @@ def user_profile(request, pk):
         })
     else:
         messages.error(request, ("Debes iniciar sesión para ver esta página."))
-        return redirect('inicio')
+        return redirect('core:inicio')
 
 
 @login_required

@@ -36,7 +36,7 @@ def furniture_add(request):
                 request, 'Oferta de Mobiliario agregado!'
             )
 
-            return redirect(reverse('inicio'))
+            return redirect(reverse('core:inicio'))
 
         else:
             print("Formulario no valido")
@@ -91,13 +91,13 @@ def edit_furniture(request, id):
                 my_furniture.save()
 
                 messages.success(request, 'Oferta de Mobiliario editada')
-                return redirect(reverse('inicio'))
+                return redirect(reverse('core:inicio'))
 
             else:
 
                 print("Formulario no valido")
                 print(form.errors)
-                return redirect(reverse('inicio'))
+                return redirect(reverse('core:inicio'))
 
         else:
 
@@ -121,7 +121,7 @@ def edit_furniture(request, id):
 
     else:
         messages.error(request, '¡Usuario no autenticado!')
-        return redirect(reverse('inicio'))
+        return redirect(reverse('core:inicio'))
 
 
 def delete_furniture(request, id):
@@ -135,4 +135,4 @@ def delete_furniture(request, id):
                 request, 'Oferta de Mobiliario eliminado!'
             )
 
-    return redirect(reverse('inicio'))
+    return redirect(reverse('core:inicio'))
