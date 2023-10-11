@@ -1,6 +1,5 @@
 """ Entertainments models. """
 from django.db import models
-from django.contrib.auth.models import User
 from apps.core.models import BaseClass
 
 # Create your models here.
@@ -21,7 +20,6 @@ class EntertainmentCategory(models.Model):
 
 class Entertainment(BaseClass):
     """ Modelo para entretenimientos. """
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(
         EntertainmentCategory,
         related_name='Entertainments',

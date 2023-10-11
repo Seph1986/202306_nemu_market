@@ -6,6 +6,7 @@ from django.contrib import messages
 
 from .forms import ElectronicForm
 from .models import Electronic, ElectronicCategory
+from apps.users.models import Profile
 
 # Create your views here.
 
@@ -63,10 +64,39 @@ def electronics_list(request, id):
     electronic_filter = Electronic.objects.filter(category=category_instane)
 
     context = {
-        'electronics': electronic_filter
+        'electronics': electronic_filter,
+        'category_id': id
     }
 
     return render(request, 'electronics/list.html', context)
+
+
+def favorit_control(request, id):
+
+    if request.user.is_authenticated:
+
+        my_user = request.user
+        
+        user =Profile.objects.get(id=my_user.id)
+
+        for fav in user.favorites.all():
+            print(fav.title)
+
+        publication = Electronic.objects.get(id=id)
+
+        if not user.favorites.filter(id=publication.id).exists():
+            user.favorites.add(publication)
+            messages.success(request,f'Agregado a favoritos {publication.title}')
+        else:
+            user.favorites.remove(publication)
+            messages.warning(request,f'Removido de favoritos {publication.title}')
+            
+
+        return redirect(reverse('inicio'))
+
+    else:
+        messages.error(request, '¡Usuario no autenticado!')
+        return redirect(reverse('inicio'))
 
 
 def edit_electronic(request, id):
@@ -137,7 +167,7 @@ def delete_electronic(request, id):
         to_delete = Electronic.objects.get(id=id)
         to_delete.delete()
 
-        messages.warning(request, 'Oferta de Electrónica eliminado!') 
+        messages.warning(request, 'Oferta de Electrónica eliminado!')
 
     else:
         print('WARNING')
