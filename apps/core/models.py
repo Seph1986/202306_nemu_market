@@ -13,10 +13,11 @@ class BaseClass(models.Model):
     description = models.CharField(max_length=255)
     price = models.CharField(max_length=255, null=False)
     location = models.CharField(max_length=255, null=False)
+    this_category = ""
     # images
     phone_number1 = models.CharField(max_length=100)
     phone_number2 = models.CharField(max_length=100, null=True)
     email = models.EmailField(null=True)
-    users #Many to many relation with Profile
+    #FAVORITES = MANY TO MANY WITH USERS
     created_at = models.DateTimeField(auto_now_add=True, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False)

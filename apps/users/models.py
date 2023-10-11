@@ -9,7 +9,7 @@ class Profile(models.Model):
     """Modelo para perfil de usuarios. """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_img = models.ImageField(null=True, upload_to="images/profile_imgs", default="images/user_default_icon.png")
-    favorites = models.ManyToManyField(to='core.BaseClass', related_name="users", blank=True, default=None)
+    favorites = models.ManyToManyField(to='core.BaseClass', related_name="favorites", blank=True, default=None)
 
     def __str__(self):
         return self.user.username

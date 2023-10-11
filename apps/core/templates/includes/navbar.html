@@ -4,7 +4,9 @@
   <div class="container-fluid mx-5">
     <!-- Nombre de la página en el centro -->
     <a class="navbar-brand" href="{% url 'core:inicio' %}">
-      <img style="height: 5rem;" src="{% static 'images/ñemu_market.png' %}" sizes="40x40" alt="Ñemu Logo"> Ñemu Market
+      <img src="{% static 'images/ñemu_market.png' %}" alt="Logo" width="50" height="44"
+        class="d-inline-block align-text-center"> 
+        Ñemu Market
     </a>
 
     <!-- Buscador en el medio -->
@@ -33,17 +35,29 @@
     <div class="navbar-nav ml-auto">
       {% if user.is_authenticated %}
       <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="{% url 'user_profile' request.user.id %}">Mi Cuenta</a>
+        <a class="nav-link" aria-current="page" href="{% url 'users:user_profile' request.user.id %}">
+          <i class="bi bi-person-fill"></i>
+          Mi Cuenta
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="{% url 'logout' %}">Cerrar sesión</a>
+        <a class="nav-link" aria-current="page" href="{% url 'users:logout' %}">
+          <i class="bi bi-box-arrow-in-left"></i>
+          Cerrar sesión
+        </a>
       </li>
       {% else %}
       <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="{% url 'register' %}">Registrarse</a>
+        <a class="nav-link" aria-current="page" href="{% url 'users:register' %}">
+          <i class="bi bi-person-add"></i>
+          Registrarse
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="{% url 'login' %}">Iniciar sesión</a>
+        <a class="nav-link" aria-current="page" href="{% url 'users:login' %}">
+          <i class="bi bi-box-arrow-in-right"></i>
+          Iniciar sesión
+        </a>
       </li>
       {% endif %}
     </div>

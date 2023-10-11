@@ -11,7 +11,8 @@
         <div class="card-body">
             <div class="row g-0">
                 <div class="card-title col-10">
-                    {{entertainment.title}}
+                    <a href="{% url 'core:show_detail' id=entertainment.id %}"
+                    class="fw-bolder link-underline link-underline-opacity-0">{{entertainment.title}}</a>
                     <h5>{{entertainment.price|intcomma}}</h5>
                     <footer>
                         Ofrecido por <span>{{electronic.user}}</span>
@@ -52,9 +53,6 @@
                         </div>
                     </div>
                     {% endif %}
-                    <a href="" class="btn btn-success btn-sm">
-                        <i class="bi bi-star-fill"></i>
-                    </a>
                 </div>
             </div>
         </div>
