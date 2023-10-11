@@ -8,7 +8,7 @@ from apps import users
 
 class BaseClass(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='publication', on_delete=models.CASCADE)
     title = models.CharField(max_length=245, null=False)
     description = models.CharField(max_length=255)
     price = models.CharField(max_length=255, null=False)

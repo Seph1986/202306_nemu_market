@@ -31,6 +31,7 @@ def login_user(request):
     else:
         return render(request, 'authenticate/login.html', {})
 
+
 @login_required
 def logout_user(request):
     """ Vista para cierre de sesión. """
@@ -60,6 +61,7 @@ def register_user(request):
     return render(request, 'authenticate/register_user.html', {
         'form': form,
     })
+
 
 @login_required
 def user_profile(request, pk):
@@ -98,6 +100,7 @@ def user_profile(request, pk):
         messages.error(request, ("Debes iniciar sesión para ver esta página."))
         return redirect('inicio')
 
+
 @login_required
 def change_profile_picture(request):
     if request.method == 'POST':
@@ -109,3 +112,5 @@ def change_profile_picture(request):
     else:
         form = ChangeProfilePictureForm(instance=request.user.profile)
     return render(request, 'authenticate/user_profile.html', {'form': form})
+
+

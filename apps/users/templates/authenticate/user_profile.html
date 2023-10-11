@@ -57,32 +57,52 @@
                     <h2>Mis Publicaciones</h2>
                     {{ publication.title }}
 
-                        {% for publication in all_publications %}
-                            <div class="card mb-3" style="max-width: 540px;">
-                                <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img src="..." class="img-fluid rounded-start" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ publication.title }}</h5>
-                                            <p class="card-text">Gs. {{ publication.price|intcomma }}</p>
-                                            <p class="card-text"><small class="text-muted"> {{publication.created_at}} </small></p>
-                                        </div>
-                                    </div>
+                    {% for publication in all_publications %}
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="..." class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ publication.title }}</h5>
+                                    <p class="card-text">Gs. {{ publication.price|intcomma }}</p>
+                                    <p class="card-text"><small class="text-muted"> {{publication.created_at}} </small>
+                                    </p>
                                 </div>
                             </div>
-                        {% empty %}
-                        <p>No tienes publicaciones.</p>
-                        {% endfor %}
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No tienes publicaciones.</p>
+                    {% endfor %}
                 </div>
                 <!-- Col para deseados -->
                 <div class="col">
                     <h2>Mis Deseados</h2>
+                    {% for favorite in profile.favorites.all %}
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="..." class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ favorite.title }}</h5>
+                                    <p class="card-text">Gs. {{ favorite.price|intcomma }}</p>
+                                    <p class="card-text"><small class="text-muted"> {{favorite.created_at}} </small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No tienes publicaciones.</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endif %}
 {% endblock %}

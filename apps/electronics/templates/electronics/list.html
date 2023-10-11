@@ -11,7 +11,8 @@
         <div class="card-body">
             <div class="row g-0">
                 <div class="card-title col-10">
-                    {{electronic.title}}
+                    <a href="{% url 'core:show_detail' id=electronic.id %}"
+                        class="fw-bolder link-underline link-underline-opacity-0">{{electronic.title}}</a>
                     <h5>{{electronic.price|intcomma}}</h5>
                     <footer>
                         Ofrecido por <span>{{electronic.user}}</span>
@@ -20,7 +21,8 @@
                 </div>
                 <div class="col-2 d-flex justify-content-end align-items-center">
                     {% if user == electronic.user %}
-                    <a href="{% url 'electronics:edit_electronic' id=electronic.id %}" class="btn btn-warning me-1 btn-sm">
+                    <a href="{% url 'electronics:edit_electronic' id=electronic.id %}"
+                        class="btn btn-warning me-1 btn-sm">
                         <i class="bi bi-pencil-fill"></i>
                     </a>
                     <!-- Button trigger modal -->
@@ -30,8 +32,8 @@
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="delete{{electronic.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
+                    <div class="modal fade" id="delete{{electronic.id}}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -52,9 +54,15 @@
                         </div>
                     </div>
                     {% endif %}
-                    <a href="{% url 'electronics:favorit_control' id=electronic.id%}" class="btn btn-success btn-sm">
+                    {% if request.user.profile in electronic.user.all %}
+                    <a href="{% url 'core:favorit_control' id=electronic.id%}" class="btn btn-secondary btn-sm">
                         <i class="bi bi-star-fill"></i>
                     </a>
+                    {% else %}
+                    <a href="{% url 'core:favorite_control' id=electronic.id%}" class="btn btn-success btn-sm">
+                        <i class="bi bi-star-fill"></i>
+                    </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
