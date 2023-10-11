@@ -9,12 +9,13 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ("core", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name="BaseClass",
+            name="Profile",
             fields=[
                 (
                     "id",
@@ -25,18 +26,21 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("title", models.CharField(max_length=245)),
-                ("description", models.CharField(max_length=255)),
-                ("price", models.CharField(max_length=255)),
-                ("location", models.CharField(max_length=255)),
-                ("phone_number1", models.CharField(max_length=100)),
-                ("phone_number2", models.CharField(max_length=100, null=True)),
-                ("email", models.EmailField(max_length=254, null=True)),
-                ("created_at", models.DateTimeField(auto_now_add=True)),
-                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "profile_img",
+                    models.ImageField(
+                        default="images/user_default_icon.png",
+                        null=True,
+                        upload_to="images/profile_imgs",
+                    ),
+                ),
+                (
+                    "favorites",
+                    models.ManyToManyField(related_name="users", to="core.baseclass"),
+                ),
                 (
                     "user",
-                    models.ForeignKey(
+                    models.OneToOneField(
                         on_delete=django.db.models.deletion.CASCADE,
                         to=settings.AUTH_USER_MODEL,
                     ),
