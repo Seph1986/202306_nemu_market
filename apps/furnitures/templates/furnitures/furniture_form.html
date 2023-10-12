@@ -37,10 +37,23 @@
                             {{ form.images.label_tag }}
                             {{ form.images }}
                         </div>
+                        <div id="additional_image_fields">
+                            <!-- Input adicional -->
+                        </div>
+                        <br>
+                        <button type="button" id="add_image_field" class="btn btn-secondary">Agregar más imágenes</button>
+                        <br>
+                        <br>
                         <div class="mb-3">
                             {{ form.location.label_tag }}
                             {{ form.location }}
                         </div>
+                        <div class="mb-3">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="col-6">
                         <div class="mb-3">
                             {{ form.phone1.label_tag }}
                             {{ form.phone1 }}
@@ -48,12 +61,6 @@
                         <div class="mb-3">
                             {{ form.phone2.label_tag }}
                             {{ form.phone2 }}
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="mb-3">
-                            {{ form.email.label_tag }}
-                            {{ form.email }}
                         </div>
                         <div class="mb-3">
                             {{ form.description.label_tag }}
@@ -66,4 +73,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById("add_image_field").addEventListener("click", function () {
+        var newInput = document.createElement("input");
+        newInput.type = "file";
+        newInput.name = "images";
+        newInput.className = "form-control";
+        newInput.multiple = true;
+        document.getElementById("additional_image_fields").appendChild(newInput);
+    });
+</script>
 {% endblock %}
