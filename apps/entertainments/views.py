@@ -3,55 +3,68 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.http import Http404
+from django.http import Http404, HttpResponseServerError
 
-
+from apps.core.models import ImageBase
 from .forms import EntertainmentForm
 from .models import Entertainment, EntertainmentCategory
 
 
-# Create your views here.
 def entertainment_add(request):
     """ Vista para electrónicos. """
-    if request.method == 'POST':
-        form = EntertainmentForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            # images = request.FILES.getlist('images')
-            category_id = request.POST.get('category_id')
-            print("Categoría seleccionada:", category_id)
+    if request.user.is_authenticated:
 
-            new_entertainment = Entertainment.objects.create(
-                title=data['title'],
-                category_id=category_id,
-                price=data['price'],
-                location=data['location'],
-                phone_number1=data['phone1'],
-                phone_number2=data['phone2'],
-                email=data['email'],
-                description=data['description'],
-                user=request.user,
-            )
+        if request.method == 'POST':
+            form = EntertainmentForm(request.POST)
 
-            messages.success(
-                request, 'Oferta de Entretenimiento agregado!'
-            )
+            if form.is_valid():
+                data = form.cleaned_data
+                images = request.FILES.getlist('images')
+                category_id = request.POST.get('category_id')
+                print("Categoría seleccionada:", category_id)
 
-            return redirect(reverse('core:inicio'))
+                new_entertainment = Entertainment.objects.create(
+                    title=data['title'],
+                    category_id=category_id,
+                    price=data['price'],
+                    location=data['location'],
+                    phone_number1=data['phone1'],
+                    phone_number2=data['phone2'],
+                    email=data['email'],
+                    description=data['description'],
+                    user=request.user,
+                )
+
+                images = request.FILES.getlist('images')
+                for image in images:
+                    ImageBase.objects.create(image=image, product=new_entertainment)
+
+                messages.success(
+                    request, 'Oferta de Entretenimiento agregado!'
+                )
+
+                return redirect(reverse('core:inicio'))
+
+            else:
+                print(request.FILES)
+                print("Formulario no valido")
+                print(form.errors)
+                return HttpResponseServerError("Formulario no válido. Por favor, revise los datos.")
 
         else:
-            print("Formulario no valido")
-            print(form.errors)
+            form = EntertainmentForm()
+
+            context = {
+                'categories': EntertainmentCategory.objects.all(),
+                'form': form,
+            }
+
+            return render(request, 'entertainments/entertainments_form.html', context)
 
     else:
-        form = EntertainmentForm()
+        messages.error(request, '¡Usuario no autenticado!')
+        return redirect(reverse('core:inicio'))
 
-    context = {
-        'categories': EntertainmentCategory.objects.all(),
-        'form': form,
-    }
-
-    return render(request, 'entertainments/entertainments_form.html', context)
 
 
 def entertainments_list(request, id):

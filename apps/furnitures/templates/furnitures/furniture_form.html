@@ -7,7 +7,7 @@
     <div class="row">
         <div class="card p-3">
             <h1>Mobiliario</h1>
-            <form action="{% url 'furnitures:furniture_add' %}" method="POST">
+            <form action="{% url 'furnitures:furniture_add' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-6">
@@ -33,10 +33,10 @@
                             </div>
                             {% endif %}
                         </div>
-                        <!-- <div class="mb-3">
-                            <label for="images" class="form-label">Imagenes:</label>
-                            <input type="file" multiple  class="form-control" id="images" name="images" required>
-                        </div> -->
+                        <div class="mb-3">
+                            {{ form.images.label_tag }}
+                            {{ form.images }}
+                        </div>
                         <div class="mb-3">
                             {{ form.location.label_tag }}
                             {{ form.location }}

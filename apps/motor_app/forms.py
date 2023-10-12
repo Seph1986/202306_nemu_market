@@ -122,5 +122,10 @@ class MotorForm(forms.Form):
         error_messages={
             'invalid': 'Por favor, ingrese un email válido.',
         }
+    )
 
+    images = forms.ImageField(
+    widget=forms.FileInput(attrs={'class': 'form-control'}),
+    label='Imagen',
+    required=False,
     )

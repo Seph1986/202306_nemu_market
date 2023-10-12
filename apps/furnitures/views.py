@@ -3,8 +3,9 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.http import Http404
+from django.http import Http404, HttpResponseServerError
 
+from apps.core.models import ImageBase
 from .models import Furniture, FurnitureCategory
 from .forms import FurnitureForm
 
@@ -13,45 +14,56 @@ from .forms import FurnitureForm
 
 def furniture_add(request):
     """ Vista para electrónicos. """
-    if request.method == 'POST':
-        form = FurnitureForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            # images = request.FILES.getlist('images')
-            category_id = request.POST.get('category_id')
-            print("Categoría seleccionada:", category_id)
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = FurnitureForm(request.POST)
+            if form.is_valid():
+                data = form.cleaned_data
+                images = request.FILES.getlist('images')
+                category_id = request.POST.get('category_id')
+                print("Categoría seleccionada:", category_id)
 
-            new_forniture = Furniture.objects.create(
-                title=data['title'],
-                category_id=category_id,
-                price=data['price'],
-                location=data['location'],
-                phone_number1=data['phone1'],
-                phone_number2=data['phone2'],
-                email=data['email'],
-                description=data['description'],
-                user=request.user,
-            )
+                new_furniture = Furniture.objects.create(
+                    title=data['title'],
+                    category_id=category_id,
+                    price=data['price'],
+                    location=data['location'],
+                    phone_number1=data['phone1'],
+                    phone_number2=data['phone2'],
+                    email=data['email'],
+                    description=data['description'],
+                    user=request.user,
+                )
 
-            messages.success(
-                request, 'Oferta de Mobiliario agregado!'
-            )
+                images = request.FILES.getlist('images')
+                for image in images:
+                    ImageBase.objects.create(image=image, product=new_furniture)
 
-            return redirect(reverse('core:inicio'))
+                messages.success(
+                    request, 'Oferta de Mobiliario agregado!'
+                )
+
+                return redirect(reverse('core:inicio'))
+
+            else:
+                print(request.FILES)
+                print("Formulario no valido")
+                print(form.errors)
+                return HttpResponseServerError("Formulario no válido. Por favor, revise los datos.")
 
         else:
-            print("Formulario no valido")
-            print(form.errors)
+            form = FurnitureForm()
+
+        context = {
+            'categories': FurnitureCategory.objects.all(),
+            'form': form,
+        }
+
+        return render(request, 'furnitures/furniture_form.html', context)
 
     else:
-        form = FurnitureForm()
-
-    context = {
-        'categories': FurnitureCategory.objects.all(),
-        'form': form,
-    }
-
-    return render(request, 'furnitures/furniture_form.html', context)
+        messages.error(request, '¡Usuario no autenticado!')
+        return redirect(reverse('core:inicio'))
 
 
 def furnitures_list(request, id):

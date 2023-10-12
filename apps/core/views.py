@@ -77,40 +77,40 @@ def favorite_control(request, id):
 
 def show_detail(request, id):
 
-        user = request.user
-        publication = BaseClass.objects.get(id=id)
+    user = request.user
+    publication = BaseClass.objects.get(id=id)
 
-        if Motor.objects.filter(id=publication.id).exists():
+    if Motor.objects.filter(id=publication.id).exists():
 
-            motor_instance = Motor.objects.get(id=id)
-            
-            fav = False
+        motor_instance = Motor.objects.get(id=id)
+        
+        fav = False
 
-            if motor_instance.favorites.filter(id=user.id).exists():
-                fav = True
+        if motor_instance.favorites.filter(id=user.id).exists():
+            fav = True
 
-            context = {
-                'publication': motor_instance,
-                'fav': fav
-            }
+        context = {
+            'publication': motor_instance,
+            'fav': fav
+        }
 
-            print('Es una instancia de motor')
-            return render(request, 'nemu/motor_show_detail.html', context)
+        print('Es una instancia de motor')
+        return render(request, 'nemu/motor_show_detail.html', context)
 
-        else:
+    else:
 
-            fav = False
+        fav = False
 
-            if publication.favorites.filter(id=user.id).exists():
-                fav = True
+        if publication.favorites.filter(id=user.id).exists():
+            fav = True
 
-            context = {
-                'publication': publication,
-                'fav': fav
-            }
+        context = {
+            'publication': publication,
+            'fav': fav
+        }
 
-            # TODO: eliminar
-            print(f'publication: {publication.__dict__}')
-            print(f'Product images: {publication.images.all()}')
+        # TODO: eliminar
+        print(f'publication: {publication.__dict__}')
+        print(f'Product images: {publication.images.all()}')
 
-            return render(request, 'nemu/show_detail.html', context)
+        return render(request, 'nemu/show_detail.html', context)

@@ -62,3 +62,9 @@ class EntertainmentForm(forms.Form):
         min_length=1,
         required=True,
     )
+
+    images = forms.ImageField(
+    widget=forms.FileInput(attrs={'class': 'form-control'}),
+    label='Imagen',
+    required=False,
+    )
