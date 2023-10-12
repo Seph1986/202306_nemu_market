@@ -14,7 +14,12 @@
     <div class="col-10 card shadow-sm">
         <div class="card-body">
             <div class="row g-0">
-                <div class="card-title col-11">
+                <div class="col-md-2">
+                    {% if offer.images.all %}
+                        <img src="{{ offer.images.all.first.image.url }}" alt="{{ offer.title }}" class="img-fluid float-start">
+                    {% endif %}
+                </div>
+                <div class="card-title col-9 mx-3">
                     <a href="{% url 'core:show_detail' id=offer.id %}"
                     class="fw-bolder link-underline link-underline-opacity-0">{{offer.title}}</a>
                     <h5>{{offer.price|intcomma}}</h5>
