@@ -7,11 +7,11 @@ from django import forms
 class MotorForm(forms.Form):
     """ Formularios para oferta de mobliliarios. """
     FUEL_CHOICES = [
-        ('gas', 'Nafta'),
-        ('diesel', 'Diesel'),
-        ('alcohol', 'Alcohol'),
-        ('flex', 'Flex'),
-        ('electric', 'Eléctrico'),
+        ('Nafta', 'Nafta'),
+        ('Diesel', 'Diesel'),
+        ('Alcohol', 'Alcohol'),
+        ('Flex', 'Flex'),
+        ('Eléctrico', 'Eléctrico'),
     ]
 
     TRANSMISSION_CHOICES = [

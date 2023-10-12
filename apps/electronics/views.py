@@ -2,6 +2,8 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib import messages
+from django.core.paginator import Paginator
+from django.http import Http404
 
 
 from .forms import ElectronicForm
@@ -67,11 +69,19 @@ def electronic_add(request):
 def electronics_list(request, id):
 
     category_instane = ElectronicCategory.objects.get(id=id)
-    electronic_filter = Electronic.objects.filter(category=category_instane)
+    electronic_filter = Electronic.objects.filter(category=category_instane).order_by('-id')
+
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(electronic_filter, 5)
+        publications = paginator.page(page)
+    except:
+        raise Http404
 
     context = {
-        'electronics': electronic_filter,
-        'category_id': id
+        'entity': publications,
+        'paginator': paginator
     }
 
     return render(request, 'electronics/list.html', context)

@@ -11,10 +11,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         categories_data = [
-            (MotorCategory, ['Otros de Motorizados', 'Motocicletas', 'Náutica', 'Camiones', 'Automóviles']),
-            (EntertainmentCategory, ['Otros de Entretenimiento', 'Libros', 'Deportes', 'Aire libre', 'Música']),
-            (FurnitureCategory, ['Otros de mobiliarios', 'Baño', 'Sala de Estar', 'Patio', 'Comedor', 'Cocina', ]),
-            (ElectronicCategory, ['Otros de Electrónica', 'Celulares', 'Tablets', 'TV - Audio - Video', 'Cámaras - Accesorios', 'Videojuegos - Consolas', 'Computadoras']),
+            (MotorCategory, ['Automóviles', 'Camiones', 'Motocicletas', 'Náutica', 'Otros de Motorizados']),
+            (EntertainmentCategory, ['Aire libre', 'Deportes', 'Libros', 'Música','Otros de Entretenimiento']),
+            (FurnitureCategory, ['Baño', 'Cocina', 'Comedor', 'Patio','Sala de Estar','Otros de mobiliarios']),
+            (ElectronicCategory, ['Cámaras - Accesorios', 'Celulares', 'Computadoras',  'Tablets', 'TV - Audio - Video',  'Videojuegos - Consolas', 'Otros de Electrónica',]),
         ]
 
         for category_model, category_names in categories_data:

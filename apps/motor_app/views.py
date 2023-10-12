@@ -2,7 +2,8 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib import messages
-
+from django.core.paginator import Paginator
+from django.http import Http404
 
 from .models import MotorCategory, Motor
 from .forms import MotorForm
@@ -43,7 +44,7 @@ def motor_add(request):
                 request, 'Oferta de Motor agregado!'
             )
 
-            return redirect(reverse('inicio'))
+            return redirect(reverse('core:inicio'))
 
         else:
             print("Formulario no valido")
@@ -63,10 +64,19 @@ def motor_add(request):
 def motor_app_list(request, id):
 
     category_instane = MotorCategory.objects.get(id=id)
-    motor_filter = Motor.objects.filter(category=category_instane)
+    motor_filter = Motor.objects.filter(category=category_instane).order_by('-id')
+
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(motor_filter, 5)
+        publications = paginator.page(page)
+    except:
+        raise Http404
 
     context = {
-        'motors': motor_filter
+        'entity': publications,
+        'paginator': paginator
     }
 
     return render(request, 'motor_app/list.html', context)
@@ -107,13 +117,13 @@ def edit_motor_app(request, id):
                 my_motor.save()
 
                 messages.success(request, 'Oferta de Motorizado editada')
-                return redirect(reverse('inicio'))
+                return redirect(reverse('core:inicio'))
 
             else:
 
                 print("Formulario no valido")
                 print(form.errors)
-                return redirect(reverse('inicio'))
+                return redirect(reverse('core:inicio'))
 
         else:
 
@@ -145,7 +155,7 @@ def edit_motor_app(request, id):
 
     else:
         messages.error(request, '¡Usuario no autenticado!')
-        return redirect(reverse('inicio'))
+        return redirect(reverse('core:inicio'))
 
 
 def delete_motor_app(request, id):
@@ -159,4 +169,4 @@ def delete_motor_app(request, id):
                 request, 'Oferta de Motor eliminado!'
             )
 
-    return redirect(reverse('inicio'))
+    return redirect(reverse('core:inicio'))

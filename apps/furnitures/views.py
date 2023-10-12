@@ -2,7 +2,8 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib import messages
-
+from django.core.paginator import Paginator
+from django.http import Http404
 
 from .models import Furniture, FurnitureCategory
 from .forms import FurnitureForm
@@ -56,10 +57,19 @@ def furniture_add(request):
 def furnitures_list(request, id):
 
     category_instane = FurnitureCategory.objects.get(id=id)
-    furniture_filter = Furniture.objects.filter(category=category_instane)
+    furniture_filter = Furniture.objects.filter(category=category_instane).order_by('-id')
+
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(furniture_filter, 5)
+        publications = paginator.page(page)
+    except:
+        raise Http404
 
     context = {
-        'furnitures': furniture_filter
+        'entity': publications,
+        'paginator': paginator
     }
 
     return render(request, 'furnitures/list.html', context)
