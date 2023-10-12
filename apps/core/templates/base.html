@@ -44,24 +44,6 @@
                 position: 'bottom-right',
                 hideAfter: '8000'
             })
-
-            var modal = document.getElementById("change-profile-picture-modal");
-            var button = document.getElementById("change-profile-picture-button");
-            var span = document.getElementsByClassName("close")[0];
-
-            button.onclick = function () {
-                modal.style.display = "block";
-            }
-
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
         </script>
         {% endfor %}
         {% endif %}
@@ -81,6 +63,28 @@
 
     <!-- Static Scripts -->
     <script src="{% static 'js/script.js' %}"></script>
+
+    <!-- Modal -->
+    <script>
+        var modal = document.getElementById("change-profile-picture-modal");
+        var button = document.getElementById("change-profile-picture-button");
+        var span = document.getElementsByClassName("close")[0];
+
+        button.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
 </body>
 
 </html>
