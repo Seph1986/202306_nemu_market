@@ -10,7 +10,12 @@
     <div class="col-10 card shadow-sm">
         <div class="card-body">
             <div class="row g-0">
-                <div class="card-title col-10">
+                <div class="col-md-2">
+                    {% if electronic.images.all %}
+                        <img src="{{ electronic.images.all.first.image.url }}" alt="{{ electronic.title }}" class="img-fluid float-start">
+                    {% endif %}
+                </div>
+                <div class="card-title col-6 mx-3">
                     <a href="{% url 'core:show_detail' id=electronic.id %}"
                         class="fw-bolder link-underline link-underline-opacity-0">{{electronic.title}}</a>
                     <h5>{{electronic.price|intcomma}}</h5>
@@ -19,7 +24,7 @@
                         | Ubicación {{electronic.location}}
                     </footer>
                 </div>
-                <div class="col-2 d-flex justify-content-end align-items-center">
+                <div class="col-3 d-flex justify-content-end align-items-center">
                     {% if user == electronic.user %}
                     <a href="{% url 'electronics:edit_electronic' id=electronic.id %}"
                         class="btn btn-warning me-1 btn-sm">

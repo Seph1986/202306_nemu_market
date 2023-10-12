@@ -52,10 +52,26 @@
             </div>
             <hr>
             <div class="row">
-                <h3>aca van las imagenes</h3>
-                {% for image in publication.images.all %}
-                    <img src="{{ image.image.url }}" alt="" class="">
-                {% endfor %}
+                <div id="miCarrusel" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Indicadores -->
+                    <!-- Imágenes del carrusel -->
+                    <div class="carousel-inner">
+                        {% for image in publication.images.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <div class="d-flex justify-content-center">
+                                <img src="{{ image.image.url }}" alt="{{ publication.title }} Image" style="max-width: 100%;" class="mx-auto">
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Controles del carrusel -->
+                    <a class="carousel-control-prev" href="#miCarrusel" data-bs-slide="prev" id="custom-prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#miCarrusel" data-bs-slide="next" id="custom-next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
             </div>
             <hr>
             <div class="row g-0">

@@ -10,7 +10,12 @@
     <div class="col-10 card shadow-sm">
         <div class="card-body">
             <div class="row g-0">
-                <div class="card-title col-10">
+                <div class="col-md-2">
+                    {% if motor.images.all %}
+                        <img src="{{ motor.images.all.first.image.url }}" alt="{{ motor.title }}" class="img-fluid float-start">
+                    {% endif %}
+                </div>
+                <div class="card-title col-6 mx-3">
                     <a href="{% url 'core:show_detail' id=motor.id %}"
                     class="fw-bolder link-underline link-underline-opacity-0">{{motor.title}}</a>
                     <h5>{{motor.price|intcomma}}</h5>
@@ -19,7 +24,7 @@
                         | Ubicación {{motor.location}}
                     </footer>
                 </div>
-                <div class="col-2 d-flex justify-content-end align-items-center">
+                <div class="col-3 d-flex justify-content-end align-items-center">
                     {% if user == motor.user %}
                     <a href="{% url 'motor_app:edit_motor_app' id=motor.id %}" class="btn btn-warning me-1 btn-sm">
                         <i class="bi bi-pencil-fill"></i>
