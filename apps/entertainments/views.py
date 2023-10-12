@@ -2,6 +2,8 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib import messages
+from django.core.paginator import Paginator
+from django.http import Http404
 
 
 from .forms import EntertainmentForm
@@ -35,7 +37,7 @@ def entertainment_add(request):
                 request, 'Oferta de Entretenimiento agregado!'
             )
 
-            return redirect(reverse('inicio'))
+            return redirect(reverse('core:inicio'))
 
         else:
             print("Formulario no valido")
@@ -55,10 +57,19 @@ def entertainment_add(request):
 def entertainments_list(request, id):
 
     category_instane = EntertainmentCategory.objects.get(id=id)
-    entertainment_filter = Entertainment.objects.filter(category=category_instane)
+    entertainment_filter = Entertainment.objects.filter(category=category_instane).order_by('-id')
+
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(entertainment_filter, 5)
+        publications = paginator.page(page)
+    except:
+        raise Http404
 
     context = {
-        'entertainments': entertainment_filter
+        'entity': publications,
+        'paginator': paginator
     }
 
     return render(request, 'entertainments/list.html', context)
@@ -90,13 +101,13 @@ def edit_entertainment(request, id):
                 my_entertainment.save()
 
                 messages.success(request, 'Oferta de Entretenimiento editada')
-                return redirect(reverse('inicio'))
+                return redirect(reverse('core:inicio'))
 
             else:
 
                 print("Formulario no valido")
                 print(form.errors)
-                return redirect(reverse('inicio'))
+                return redirect(reverse('core:inicio'))
 
         else:
 
@@ -120,7 +131,7 @@ def edit_entertainment(request, id):
 
     else:
         messages.error(request, '¡Usuario no autenticado!')
-        return redirect(reverse('inicio'))
+        return redirect(reverse('core:inicio'))
 
 
 def delete_entertainment(request, id):
@@ -134,4 +145,4 @@ def delete_entertainment(request, id):
                 request, 'Oferta de Entretenimiento eliminado!'
             )
 
-    return redirect(reverse('inicio'))
+    return redirect(reverse('core:inicio'))

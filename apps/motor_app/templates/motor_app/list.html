@@ -4,8 +4,8 @@
 {% block title %} Lista Motorizados {% endblock %}
 
 {% block content %}
-{% if motors %}
-{% for motor in motors %}
+{% if entity %}
+{% for motor in entity %}
 <div class="row m-2 justify-content-center">
     <div class="col-10 card shadow-sm">
         <div class="card-body">
@@ -60,6 +60,9 @@
     </div>
 </div>
 {% endfor %}
+<div>
+{% include 'includes/paginator.html' %}
+    </div>
 {% else %}
 <div class="row mt-5 justify-content-center">
     <div class="col card shadow-sm text-center">

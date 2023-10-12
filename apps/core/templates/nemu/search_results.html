@@ -15,7 +15,8 @@
         <div class="card-body">
             <div class="row g-0">
                 <div class="card-title col-11">
-                    {{offer.title}}
+                    <a href="{% url 'core:show_detail' id=offer.id %}"
+                    class="fw-bolder link-underline link-underline-opacity-0">{{offer.title}}</a>
                     <h5>{{offer.price|intcomma}}</h5>
                     <footer>
                         Ofrecido por <span>{{offer.user}}</span>

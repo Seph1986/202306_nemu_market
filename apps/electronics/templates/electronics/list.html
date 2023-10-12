@@ -4,8 +4,8 @@
 {% block title %} Lista Electrónicos {% endblock %}
 
 {% block content %}
-{% if electronics %}
-{% for electronic in electronics %}
+{% if entity %}
+{% for electronic in entity %}
 <div class="row m-2 justify-content-center">
     <div class="col-10 card shadow-sm">
         <div class="card-body">
@@ -61,6 +61,9 @@
     </div>
 </div>
 {% endfor %}
+<div>
+{% include 'includes/paginator.html' %}
+</div>
 {% else %}
 <div class="row mt-5 justify-content-center">
     <div class="col card shadow-sm text-center">
