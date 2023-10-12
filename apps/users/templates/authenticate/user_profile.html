@@ -62,7 +62,7 @@
                         <div class="row g-0">
                             <div class="col-md-4">
                                 {% if publication.images.all %}
-                                    <img src="{{ publication.images.all.first.image.url }}" alt="" width="140px" height="110">
+                                    <img src="{{ publication.images.all.first.image.url }}" alt="{{ publication.title }}" class="img-fluid rounded-start">
                                 {% endif %}
                             </div>
                             <div class="col-md-8">
@@ -88,7 +88,9 @@
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="..." class="img-fluid rounded-start" alt="...">
+                                {% if favorite.images.all %}
+                                    <img src="{{ favorite.images.all.first.image.url }}" alt="{{ favorite.title }}" class="img-fluid rounded-start">
+                                {% endif %}
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
