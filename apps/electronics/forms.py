@@ -65,8 +65,8 @@ class ElectronicForm(forms.Form):
         required=True,
     )
 
-    images = forms.ImageField(
-    widget=forms.FileInput(attrs={'class': 'form-control'}),
-    label='Imagen',
-    required=False,
+    images = forms.FileField(
+        widget=forms.ClearableFileInput(attrs={'class': 'form-control'}),
+        label='Imágenes',
+        required=False,
     )
