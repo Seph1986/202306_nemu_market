@@ -38,9 +38,12 @@
                             {{ form.images }}
                         </div>
                         <div id="additional_image_fields">
-                            <!-- Additional file input fields will be added here -->
+                            <!-- Input adicional -->
                         </div>
+                        <br>
                         <button type="button" id="add_image_field" class="btn btn-secondary">Agregar más imágenes</button>
+                        <br>
+                        <br>
                         <div class="mb-3">
                             {{ form.location.label_tag }}
                             {{ form.location }}
@@ -70,15 +73,14 @@
         </div>
     </div>
 </div>
-
 <script>
-    document.getElementById("add_image_field").addEventListener("click", function () {
-        var newInput = document.createElement("input");
-        newInput.type = "file";
-        newInput.name = "images";
-        newInput.className = "form-control";
-        newInput.multiple = true;
-        document.getElementById("additional_image_fields").appendChild(newInput);
-    });
+document.getElementById("add_image_field").addEventListener("click", function () {
+    var newInput = document.createElement("input");
+    newInput.type = "file";
+    newInput.name = "images";
+    newInput.className = "form-control";
+    newInput.multiple = true;
+    document.getElementById("additional_image_fields").appendChild(newInput);
+});
 </script>
 {% endblock %}

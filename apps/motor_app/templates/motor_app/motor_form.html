@@ -64,9 +64,16 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="images" class="form-label">Imagenes:</label>
-                            <input type="file" multiple class="form-control" id="images" name="images" >
+                            {{ form.images.label_tag }}
+                            {{ form.images }}
                         </div>
+                        <div id="additional_image_fields">
+                            <!-- Input adicional -->
+                        </div>
+                        <br>
+                        <button type="button" id="add_image_field" class="btn btn-secondary">Agregar más imágenes</button>
+                        <br>
+                        <br>
                         <div class="mb-3">
                             {{ form.email.label_tag }}
                             {{ form.email }}
@@ -92,4 +99,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById("add_image_field").addEventListener("click", function () {
+        var newInput = document.createElement("input");
+        newInput.type = "file";
+        newInput.name = "images";
+        newInput.className = "form-control";
+        newInput.multiple = true;
+        document.getElementById("additional_image_fields").appendChild(newInput);
+    });
+</script>
 {% endblock %}
