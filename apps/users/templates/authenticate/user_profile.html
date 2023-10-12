@@ -14,9 +14,8 @@
             <div class="row">
                 <div class="col">
                     <h2>Perfil de {{ profile.user.username }}</h2>
-                    <br>
-                    <div class="image-container">
-                        <img src="{{ profile.profile_img.url }}" alt="{{ profile.user.username }}" class="responsive-image">
+                    <div class="d-flex justify-content-center">
+                        <img src="{{ profile.profile_img.url }}" class="img-thumbnail col-8" alt="{{ profile.user.username }}">   
                     </div>
                     <br>
                     <p>{{ user.first_name }} {{ user.last_name }}</p>
@@ -60,10 +59,10 @@
 
                     {% for publication in all_publications %}
                     <div class="card mb-3" style="max-width: 540px;">
-                        <div class="row g-0">
+                        <div class="row g-0 align-items-center m-1">
                             <div class="col-md-4">
                                 {% if publication.images.all %}
-                                    <img src="{{ publication.images.all.first.image.url }}" alt="{{ publication.title }}" class="img-fluid rounded-start">
+                                    <img src="{{ publication.images.all.first.image.url }}" alt="{{ publication.title }}" class="img-fluid">
                                 {% endif %}
                             </div>
                             <div class="col-md-8">
@@ -87,10 +86,10 @@
                     <h2>Mis Favoritos</h2>
                     {% for favorite in profile.favorites.all %}
                     <div class="card mb-3" style="max-width: 540px;">
-                        <div class="row g-0">
+                        <div class="row g-0 align-items-center m-1">
                             <div class="col-md-4">
                                 {% if favorite.images.all %}
-                                    <img src="{{ favorite.images.all.first.image.url }}" alt="{{ favorite.title }}" class="img-fluid rounded-start">
+                                    <img src="{{ favorite.images.all.first.image.url }}" alt="{{ favorite.title }}" class="img-fluid">
                                 {% endif %}
                             </div>
                             <div class="col-md-8">
