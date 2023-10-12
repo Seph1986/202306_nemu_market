@@ -109,4 +109,8 @@ def show_detail(request, id):
                 'fav': fav
             }
 
+            # TODO: eliminar
+            print(f'publication: {publication.__dict__}')
+            print(f'Product images: {publication.images.all()}')
+
             return render(request, 'nemu/show_detail.html', context)

@@ -20,7 +20,6 @@ def electronic_add(request):
             
             if form.is_valid():
                 data = form.cleaned_data  # Obtiene los datos válidos del formulario
-                images = request.FILES.getlist('images')
                 print(data)
                 # images = request.FILES.getlist('images')
                 category_id = request.POST.get('category_id')
@@ -59,7 +58,7 @@ def electronic_add(request):
             }
 
 
-        return render(request, 'electronics/electronic_form.html', context)
+            return render(request, 'electronics/electronic_form.html', context)
 
     else:
         messages.error(request, '¡Usuario no autenticado!')

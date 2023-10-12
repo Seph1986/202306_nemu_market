@@ -53,6 +53,9 @@
             <hr>
             <div class="row">
                 <h3>aca van las imagenes</h3>
+                {% for image in publication.images.all %}
+                    <img src="{{ image.image.url }}" alt="" class="">
+                {% endfor %}
             </div>
             <hr>
             <div class="row g-0">
