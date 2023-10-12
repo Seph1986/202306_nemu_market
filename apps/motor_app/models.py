@@ -26,7 +26,6 @@ class Motor(BaseClass):
     transmission = models.CharField(max_length=145, null=False)
     year = models.PositiveBigIntegerField(null=False)
     color = models.CharField(max_length=50, null=False)
-    images = models.FileField()
     category = models.ForeignKey(
         MotorCategory,
         related_name='motors',

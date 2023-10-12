@@ -62,3 +62,4 @@ class FurnitureForm(forms.Form):
         min_length=1,
         required=True,
     )
+    

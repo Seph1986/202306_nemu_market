@@ -1,6 +1,7 @@
 """ Forms Electronics. """
 from django import forms
 
+
 class ElectronicForm(forms.Form):
     """ Formulario para oferta de electrónicos. """
     title = forms.CharField(
@@ -62,4 +63,9 @@ class ElectronicForm(forms.Form):
         max_length=255,
         min_length=1,
         required=True,
+    )
+
+    image = forms.ImageField(
+        widget=forms.FileInput(attrs={'class': 'form-control'}),
+        label='Imagen',
     )
