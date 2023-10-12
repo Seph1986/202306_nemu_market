@@ -3,29 +3,28 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.http import Http404
+from django.http import Http404, HttpResponseServerError
 
 
+from apps.core.models import ImageBase
 from .forms import ElectronicForm
 from .models import Electronic, ElectronicCategory
 
 
-# Create your views here.
 def electronic_add(request):
     """ Vista para electrónicos. """
     if request.user.is_authenticated:
 
         if request.method == 'POST':
             form = ElectronicForm(request.POST)
-            
+
             if form.is_valid():
-                data = form.cleaned_data  # Obtiene los datos válidos del formulario
+                data = form.cleaned_data
+                images = request.FILES.getlist('images')
                 print(data)
-                # images = request.FILES.getlist('images')
                 category_id = request.POST.get('category_id')
                 print("Categoría seleccionada:", category_id)
 
-                # Crea un objeto Motor utilizando los datos válidos
                 new_electronic = Electronic.objects.create(
                     title=data['title'],
                     category_id=category_id,
@@ -38,6 +37,10 @@ def electronic_add(request):
                     user=request.user,
                 )
 
+                images = request.FILES.getlist('images')
+                for image in images:
+                    ImageBase.objects.create(image=image, product=new_electronic)
+
                 messages.success(
                     request, '¡Producto de Electrónica agregado!'
                 )
@@ -45,18 +48,18 @@ def electronic_add(request):
                 return redirect(reverse('core:inicio'))
 
             else:
+                print(request.FILES)
                 print("Formulario no valido")
                 print(form.errors)
+                return HttpResponseServerError("Formulario no válido. Por favor, revise los datos.")
 
         else:
-
             form = ElectronicForm()
 
             context = {
                 'categories': ElectronicCategory.objects.all(),
                 'form': form,
             }
-
 
             return render(request, 'electronics/electronic_form.html', context)
 

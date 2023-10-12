@@ -7,7 +7,7 @@
     <div class="row">
         <div class="card p-3">  
             <h1>Motorizado</h1>
-            <form action="{% url 'motor_app:motor_add' %}" method="POST">
+            <form action="{% url 'motor_app:motor_add' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-4">
